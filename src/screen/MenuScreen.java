@@ -63,13 +63,13 @@ public class MenuScreen extends JPanel{
 		
 		//--------------JLABEL CONFIGURATION-------------------
 		JLabel iconoMenuP = new JLabel("");
-		iconoMenuP.setIcon(new ImageIcon("C:\\Users\\1DAM\\Documents\\RepositorioDiogenes\\proyecto_Diogenes\\img\\icono1.png"));
+		iconoMenuP.setIcon(new ImageIcon("C:\\GIT\\proyecto_Diogenes\\img\\icono1.png"));
 		iconoMenuP.setBounds(223, 141, 536, 386);
 		add(iconoMenuP);
 		
 		JLabel fondoMenuP = new JLabel("");
 		fondoMenuP.setBounds(0, 0, 1280, 1024);
-		fondoMenuP.setIcon(new ImageIcon("C:\\Users\\1DAM\\Documents\\RepositorioDiogenes\\proyecto_Diogenes\\img\\fondo1.png"));
+		fondoMenuP.setIcon(new ImageIcon("C:\\GIT\\proyecto_Diogenes\\img\\fondo1.png"));
 		add(fondoMenuP);
 		setVisible(true);
 

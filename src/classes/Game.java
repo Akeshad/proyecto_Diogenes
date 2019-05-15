@@ -1,5 +1,5 @@
 
-package clases;
+package classes;
 
 /**
  *

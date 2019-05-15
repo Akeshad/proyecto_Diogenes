@@ -1,5 +1,5 @@
 
-package clases;
+package classes;
 
 import java.util.ArrayList;
 
@@ -30,13 +30,14 @@ public class MainCharacter extends Philosopher {
 	}
 	
  
-	public static String elegirArgumento() {
-		String elegido = " ";
+	//public static Argumento elegirArgumento() {
 		
 		
 		
-		return elegido;
-	}
+		
+		
+		//return elegido;
+	//}
 	
 	public static void descartarArgumento() {
 		

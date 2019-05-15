@@ -7,14 +7,17 @@ package main;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import clases.Argument;
-import clases.Argument.Type1;
-import clases.Argument.Type2;
-import clases.MainCharacter;
-import clases.Philosopher;
+import java.util.Random;
+
+import classes.Argument;
+import classes.MainCharacter;
+import classes.Philosopher;
+import classes.Argument.Type1;
+import classes.Argument.Type2;
 import exceptions.LenghtArgumentException;
 import exceptions.LenghtCharacterArgumentException;
 import exceptions.NameException;
+import exceptions.TypeException;
 import screen.Window;
 
 /**
@@ -28,7 +31,7 @@ public class ProjectDiogenes {
 	 */
 	public static void main(String[] args) {
 		// TODO code application logic here
-		Window window = new Window();
+		//Window window = new Window();
 
 		Argument argumento0 = new Argument("Escopeta", "Eres Feo", (byte)1,(byte)0,
 				Type1.DUALISTA, Type2.MECANICISTA);
@@ -75,6 +78,11 @@ public class ProjectDiogenes {
 			Philosopher descartes = new Philosopher("Decartes", argumentoL);
 			MainCharacter diogenes = new MainCharacter("Diogenes", argumentoLP);
 
+			int length = descartes.getArguments().size();
+
+			for (int i = 0; i < length; i++) {
+				Argument argument = descartes.getArguments().get(i);
+			}
 			//System.out.println(descartes.mayorArgumento(argumentoL));
 		} catch (LenghtArgumentException e) {
 			e.getMessage();
@@ -84,38 +92,90 @@ public class ProjectDiogenes {
 			e.getMessage();
 		}
 
-
-
-
-
-		/*
-	public void lucha(Personaje p, Filosofo f) {
+	}
+	
+	public void lucha(MainCharacter m, Philosopher p) {
 
 
 		String bienvenida = "Esto es una prueba de la batalla por turnos";
 		do {
-
-
-
-
-		} while ((p.comprobarArgumentosExisten && f.comprobarArgumentosExisten) == true);
-
-
-		Se comprueba que ambos personajes tienen argumentos y despues se procede a la batalla. 
-
-		//if(comprobarArgumentos(p,f)==true) {
-
-		//}else {
-
-		//}
-
-
+			try {
+				ArrayList<Argument> dd;
+				
+				winnerArgument(p.getBestArgument(), getArgument(m));
+				
+				
+			} catch (TypeException e) {
+				e.printStackTrace();
+			}
+			
+		} while (p.getTimesLost() == 3 || m.getTimesLost() == 3);
 
 	}
+	
+	public static Argument getArgument(MainCharacter m) {
+		Random rd = new Random();
+		ArrayList<Argument> argumentsLs = m.getArguments();
 
-
-		 */	
-
+		return argumentsLs.get(rd.nextInt(argumentsLs.size()));	 
+	}
+	
+	public static Argument winnerArgument(Argument p, Argument m) throws TypeException {
+		
+		if(p.getStrength() > m.getStrength()) {
+			return p;
+		}else if(p.getStrength() < m.getStrength()){
+			return m;			
+		}else if(type1Strenght(p.getType1()) > type1Strenght(m.getType1())){
+			return p;
+		}else if(type1Strenght(p.getType1()) < type1Strenght(m.getType1())){
+			return m;
+		}else if(type2Strenght(p.getType2()) > type2Strenght(m.getType2())){
+			return p;
+		}else if(type2Strenght(p.getType2()) < type2Strenght(m.getType2())){
+			return m;
+		}else {
+			Random rd = new Random();
+			boolean resultado = rd.nextBoolean();
+			
+			if(resultado) {
+				return p;
+			}else {
+				return m;
+			}
+		}
+	}
+	
+	public static int type1Strenght(Type1 tp) throws TypeException {
+		switch (tp) {
+		case DUALISTA:
+			return 0;
+		case MATERIALISTA:
+			return 1;
+		default:
+			throw new TypeException("Tipo no reconocido");
+		}
+	}
+	
+	public static int type2Strenght(Type2 tp) throws TypeException {
+		switch (tp) {
+		case MONISTA:
+			return 0;
+		case MECANICISTA:
+			return 1;
+		case CONDUCTISTA:
+			return 2;
+		case FUNCIONALISTA:
+			return 3;
+		case IDENTIDAD:
+			return 4;
+		case ELIMINATIVO:
+			return 5;
+		case NATURALISTA:
+			return 6;
+		default:
+			throw new TypeException("Tipo no reconocido");
+		}
 	}
 }
 

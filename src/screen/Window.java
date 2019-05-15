@@ -2,9 +2,12 @@ package screen;
 
 
 import javax.swing.*;
+
+import classes.Game;
+
 import java.awt.Font;
 import java.awt.Color;
-import clases.Game;
+
 import components.MyMenuItem;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;

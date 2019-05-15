@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package clases;
+package classes;
 
 import java.util.ArrayList;
 
@@ -16,11 +16,12 @@ import exceptions.NameException;
  * @author SaraPdrui
  */
 public class Philosopher {
-     protected static String name; // Philosopher큦 name 
-     protected static ArrayList<Argument> arguments = new ArrayList<Argument>();// Philosopher큦 arguments 
-	
-    
-    /**
+     protected String name; // Philosopher큦 name 
+     protected ArrayList<Argument> arguments = new ArrayList<Argument>();// Philosopher큦 arguments 
+     protected int timesLost;
+     
+
+	/**
      * 
      * @param name
      * @param arguments
@@ -77,23 +78,32 @@ public class Philosopher {
 		}
 
 	}
+	
+	   public int getTimesLost() {
+			return timesLost;
+		}
+
+		public void setTimesLost(int timesLost) {
+			this.timesLost = timesLost;
+		}
     
-	//LUCHAR()
+	
 	
 	/**
 	 * This function calculate the best argument for a fight
 	 * @param argument
 	 */
-	/*public void useBestArgument(ArrayList<Argumento> argument) {
-
-		for (int i = 0; i < argumento.size(); i++) {
-
-			byte arg = argumento.get(i).getFuerza();
+	public Argument getBestArgument() {
+		Argument max = null;
+		for (int i = 0; i < arguments.size(); i++) {
+			Argument arg = arguments.get(i);
 			
-			si el mejor argumento ha perdido dos veces usar el mejor siguiente
+			if (i == 0 || arg.getStrength() > max.getStrength()) {
+				max = arg;
+			}
 		}
-
-	}*/
+		return max;
+	}
     
     
     
