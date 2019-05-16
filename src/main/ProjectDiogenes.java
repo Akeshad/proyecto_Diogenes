@@ -100,13 +100,14 @@ public class ProjectDiogenes {
 		do {
 			try {				
 			Argument winner = winnerArgument(p.getBestArgument(), getArgument(m));
-			ArrayList <Argument> dd = new ArrayList <Argument>();
 			
-			dd.add(winner);
 			
-			if(dd != m.getArguments()) {
+			 ArrayList <Argument> argumentoFilosofo = p.getArguments();
+			 ArrayList <Argument> argumentoProta = m.getArguments();
+			
+			if(argumentoProta.contains(winner)) {
 				m.setTimesLost(+1);
-			}if(dd != p.getArguments()) {
+			}if(argumentoFilosofo.contains(winner)) {
 				p.setTimesLost(+1);
 			}else {
 				throw new NotFoundArgumentException("Ha habido un error en la batalla");
