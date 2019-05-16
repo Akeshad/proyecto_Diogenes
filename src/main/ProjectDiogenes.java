@@ -66,13 +66,11 @@ public class ProjectDiogenes {
 		argumentoLP.add(argumentoP2);
 		argumentoLP.add(argumentoP3);
 
-
-
 		try {	
 			Philosopher descartes = new Philosopher("Decartes", argumentoL);
 			MainCharacter diogenes = new MainCharacter("Diogenes", argumentoLP);
 
-			System.out.println(fight(diogenes, descartes));
+			fight(diogenes, descartes);
 		} catch (LenghtArgumentException e) {
 			e.getMessage();
 		} catch (LenghtCharacterArgumentException e) {
@@ -84,9 +82,11 @@ public class ProjectDiogenes {
 			e.printStackTrace();
 		}
 
+
+
 	}
-	
-	
+
+
 	/**
 	 * fight 
 	 * @param m
@@ -96,29 +96,31 @@ public class ProjectDiogenes {
 	public static Philosopher fight(MainCharacter m, Philosopher p) throws NotFoundArgumentException {
 
 		System.out.println("Esto es una prueba de la batalla por turnos");
-		
+
 		do {
 			try {				
-			Argument winner = winnerArgument(p.getBestArgument(), getArgument(m));
-			
-			
-			 ArrayList <Argument> argumentoFilosofo = p.getArguments();
-			 ArrayList <Argument> argumentoProta = m.getArguments();
-			
-			if(argumentoProta.contains(winner)) {
-				m.setTimesLost(+1);
-			}if(argumentoFilosofo.contains(winner)) {
-				p.setTimesLost(+1);
-			}else {
-				throw new NotFoundArgumentException("Ha habido un error en la batalla");
-			}
-				
+				Argument winner = winnerArgument(p.getBestArgument(), getArgument(m));
+
+
+				ArrayList <Argument> argumentoFilosofo = p.getArguments();
+				ArrayList <Argument> argumentoProta = m.getArguments();
+
+				if(!(argumentoProta.contains(winner))) {
+					m.setTimesLost(m.getTimesLost() + 1);
+
+				} else if(!(argumentoFilosofo.contains(winner))) {
+
+					p.setTimesLost(m.getTimesLost() + 1);
+				}else {
+					throw new NotFoundArgumentException("Ha habido un error en la batalla");
+				}
+
 			} catch (TypeException e) {
 				e.printStackTrace();
 			}
-			
-		} while (p.getTimesLost() == 4 || m.getTimesLost() == 4);
-			
+
+		} while (p.getTimesLost() <= 4 || m.getTimesLost() <= 4);
+
 		if(p.getTimesLost() >= 4) {
 			return p;
 		}else if(m.getTimesLost() >= 4) {
@@ -127,7 +129,7 @@ public class ProjectDiogenes {
 			throw new NotFoundArgumentException("Ha habido un error en la batalla");
 		}
 	}
-	
+
 	/**
 	 * Function that returns a random argument of the main character
 	 * @param m
@@ -139,7 +141,7 @@ public class ProjectDiogenes {
 
 		return argumentsLs.get(rd.nextInt(argumentsLs.size()));	
 	}
-	
+
 	/**
 	 * Function that established witch is the winner argument 
 	 * @param p
@@ -148,7 +150,7 @@ public class ProjectDiogenes {
 	 * @throws TypeException
 	 */
 	public static Argument winnerArgument(Argument p, Argument m) throws TypeException {
-		
+
 		if(p.getStrength() > m.getStrength()) {
 			return p;
 		}else if(p.getStrength() < m.getStrength()){
@@ -161,12 +163,12 @@ public class ProjectDiogenes {
 			return p;
 		}else if(type2Strenght(p.getType2()) < type2Strenght(m.getType2())){
 			return m;
-			
+
 			//if everything fails, we throw a coin
 		}else {
 			Random rd = new Random();
 			boolean resultado = rd.nextBoolean();
-			
+
 			if(resultado) {
 				return p;
 			}else {
@@ -180,7 +182,7 @@ public class ProjectDiogenes {
 	 * @return int
 	 * @throws TypeException
 	 */
-	
+
 	public static int type1Strenght(Type1 tp) throws TypeException {
 		switch (tp) {
 		case DUALISTA:
@@ -191,14 +193,14 @@ public class ProjectDiogenes {
 			throw new TypeException("Tipo no reconocido");
 		}
 	}
-	
+
 	/**
 	 * Function that established a witch is the strongest Type2 
 	 * @param tp
 	 * @return int
 	 * @throws TypeException
 	 */
-	
+
 	public static int type2Strenght(Type2 tp) throws TypeException {
 		switch (tp) {
 		case MONISTA:
