@@ -70,7 +70,7 @@ public class ProjectDiogenes {
 			Philosopher descartes = new Philosopher("Decartes", argumentoL);
 			MainCharacter diogenes = new MainCharacter("Diogenes", argumentoLP);
 
-			fight(diogenes, descartes);
+			System.out.println(fight(diogenes, descartes));
 		} catch (LenghtArgumentException e) {
 			e.getMessage();
 		} catch (LenghtCharacterArgumentException e) {
@@ -110,7 +110,7 @@ public class ProjectDiogenes {
 
 				} else if(!(argumentoFilosofo.contains(winner))) {
 
-					p.setTimesLost(m.getTimesLost() + 1);
+					p.setTimesLost(p.getTimesLost() + 1);
 				}else {
 					throw new NotFoundArgumentException("Ha habido un error en la batalla");
 				}
