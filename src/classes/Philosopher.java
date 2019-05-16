@@ -91,7 +91,7 @@ public class Philosopher {
 	
 	/**
 	 * This function calculate the best argument for a fight
-	 * @param argument
+	 * @param Argument
 	 */
 	public Argument getBestArgument() {
 		Argument max = null;

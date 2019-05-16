@@ -31,7 +31,7 @@ public class ProjectDiogenes {
 	 */
 	public static void main(String[] args) {
 		// TODO code application logic here
-		//Window window = new Window();
+		Window window = new Window();
 
 		Argument argumento0 = new Argument("Escopeta", "Eres Feo", (byte)1,(byte)0,
 				Type1.DUALISTA, Type2.MECANICISTA);
@@ -83,7 +83,7 @@ public class ProjectDiogenes {
 			for (int i = 0; i < length; i++) {
 				Argument argument = descartes.getArguments().get(i);
 			}
-			//System.out.println(descartes.mayorArgumento(argumentoL));
+	;
 		} catch (LenghtArgumentException e) {
 			e.getMessage();
 		} catch (LenghtCharacterArgumentException e) {
@@ -94,32 +94,51 @@ public class ProjectDiogenes {
 
 	}
 	
-	public void lucha(MainCharacter m, Philosopher p) {
+	
+	/**
+	 * fight 
+	 * @param m
+	 * @param p
+	 */
+	public void fight(MainCharacter m, Philosopher p) {
 
-
-		String bienvenida = "Esto es una prueba de la batalla por turnos";
+		System.out.println("Esto es una prueba de la batalla por turnos");
+		
 		do {
 			try {
-				ArrayList<Argument> dd;
+			
+			
 				
-				winnerArgument(p.getBestArgument(), getArgument(m));
+			Argument winner = winnerArgument(p.getBestArgument(), getArgument(m));
 				
 				
 			} catch (TypeException e) {
 				e.printStackTrace();
 			}
 			
-		} while (p.getTimesLost() == 3 || m.getTimesLost() == 3);
+		} while (p.getTimesLost() == 4 || m.getTimesLost() == 4);
 
 	}
 	
+	/**
+	 * Function that returns a random argument of the main character
+	 * @param m
+	 * @return Argument
+	 */	
 	public static Argument getArgument(MainCharacter m) {
 		Random rd = new Random();
 		ArrayList<Argument> argumentsLs = m.getArguments();
 
-		return argumentsLs.get(rd.nextInt(argumentsLs.size()));	 
+		return argumentsLs.get(rd.nextInt(argumentsLs.size()));	
 	}
 	
+	/**
+	 * Function that established witch is the winner argument 
+	 * @param p
+	 * @param m
+	 * @return Argument
+	 * @throws TypeException
+	 */
 	public static Argument winnerArgument(Argument p, Argument m) throws TypeException {
 		
 		if(p.getStrength() > m.getStrength()) {
@@ -134,6 +153,8 @@ public class ProjectDiogenes {
 			return p;
 		}else if(type2Strenght(p.getType2()) < type2Strenght(m.getType2())){
 			return m;
+			
+			//if everything fails, we throw a coin
 		}else {
 			Random rd = new Random();
 			boolean resultado = rd.nextBoolean();
@@ -145,6 +166,12 @@ public class ProjectDiogenes {
 			}
 		}
 	}
+	/**
+	 * Function that established a witch is the strongest Type1
+	 * @param tp
+	 * @return int
+	 * @throws TypeException
+	 */
 	
 	public static int type1Strenght(Type1 tp) throws TypeException {
 		switch (tp) {
@@ -156,6 +183,13 @@ public class ProjectDiogenes {
 			throw new TypeException("Tipo no reconocido");
 		}
 	}
+	
+	/**
+	 * Function that established a witch is the strongest Type2 
+	 * @param tp
+	 * @return int
+	 * @throws TypeException
+	 */
 	
 	public static int type2Strenght(Type2 tp) throws TypeException {
 		switch (tp) {
