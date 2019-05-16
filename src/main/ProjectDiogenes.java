@@ -17,6 +17,7 @@ import classes.Argument.Type2;
 import exceptions.LenghtArgumentException;
 import exceptions.LenghtCharacterArgumentException;
 import exceptions.NameException;
+import exceptions.NotFoundArgumentException;
 import exceptions.TypeException;
 import screen.Window;
 
@@ -31,7 +32,7 @@ public class ProjectDiogenes {
 	 */
 	public static void main(String[] args) {
 		// TODO code application logic here
-		Window window = new Window();
+		//Window window = new Window();
 
 		Argument argumento0 = new Argument("Escopeta", "Eres Feo", (byte)1,(byte)0,
 				Type1.DUALISTA, Type2.MECANICISTA);
@@ -42,8 +43,6 @@ public class ProjectDiogenes {
 		Argument argumento2 = new Argument("Hacha", "Las Salchichas son buenas", (byte)3,(byte)0,
 				Type1.DUALISTA, Type2.MECANICISTA);
 
-		Argument argumento3 = new Argument("Metralleta", "Te voy a matar", (byte)4,(byte)0,
-				Type1.DUALISTA, Type2.MECANICISTA);
 		Argument argumento4 = new Argument("Tanque del Dualismo", "Dios todo lo puede", (byte)7,(byte)0,
 				Type1.DUALISTA, Type2.MECANICISTA);
 
@@ -51,12 +50,8 @@ public class ProjectDiogenes {
 		argumentoL.add(argumento0);
 		argumentoL.add(argumento1);
 		argumentoL.add(argumento2);
-		argumentoL.add(argumento3);
 		argumentoL.add(argumento4);
 		Argument argumentoP0 = new Argument("Espada", "Eres Feo", (byte)1,(byte)0,
-				Type1.DUALISTA, Type2.MONISTA);
-
-		Argument argumentoP1 = new Argument("Jarronazo", "Eres un gato", (byte)2,(byte)0,
 				Type1.DUALISTA, Type2.MONISTA);
 
 		Argument argumentoP2 = new Argument("Cabezaso Dividno", "Las Salchichas son buenas", (byte)3,(byte)0,
@@ -68,7 +63,6 @@ public class ProjectDiogenes {
 
 		ArrayList<Argument> argumentoLP = new ArrayList<Argument>();
 		argumentoLP.add(argumentoP0);
-		argumentoLP.add(argumentoP1);
 		argumentoLP.add(argumentoP2);
 		argumentoLP.add(argumentoP3);
 
@@ -78,18 +72,16 @@ public class ProjectDiogenes {
 			Philosopher descartes = new Philosopher("Decartes", argumentoL);
 			MainCharacter diogenes = new MainCharacter("Diogenes", argumentoLP);
 
-			int length = descartes.getArguments().size();
-
-			for (int i = 0; i < length; i++) {
-				Argument argument = descartes.getArguments().get(i);
-			}
-	;
+			System.out.println(fight(diogenes, descartes));
 		} catch (LenghtArgumentException e) {
 			e.getMessage();
 		} catch (LenghtCharacterArgumentException e) {
 			e.getMessage();
 		} catch (NameException e) {
 			e.getMessage();
+		} catch (NotFoundArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 	}
@@ -99,25 +91,40 @@ public class ProjectDiogenes {
 	 * fight 
 	 * @param m
 	 * @param p
+	 * @throws NotFoundArgumentException 
 	 */
-	public void fight(MainCharacter m, Philosopher p) {
+	public static Philosopher fight(MainCharacter m, Philosopher p) throws NotFoundArgumentException {
 
 		System.out.println("Esto es una prueba de la batalla por turnos");
 		
 		do {
-			try {
-			
-			
-				
+			try {				
 			Argument winner = winnerArgument(p.getBestArgument(), getArgument(m));
-				
+			ArrayList <Argument> dd = new ArrayList <Argument>();
+			
+			dd.add(winner);
+			
+			if(dd != m.getArguments()) {
+				m.setTimesLost(+1);
+			}if(dd != p.getArguments()) {
+				p.setTimesLost(+1);
+			}else {
+				throw new NotFoundArgumentException("Ha habido un error en la batalla");
+			}
 				
 			} catch (TypeException e) {
 				e.printStackTrace();
 			}
 			
 		} while (p.getTimesLost() == 4 || m.getTimesLost() == 4);
-
+			
+		if(p.getTimesLost() >= 4) {
+			return p;
+		}else if(m.getTimesLost() >= 4) {
+			return m;
+		}else {
+			throw new NotFoundArgumentException("Ha habido un error en la batalla");
+		}
 	}
 	
 	/**
