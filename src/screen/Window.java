@@ -33,7 +33,7 @@ public class Window extends JFrame {
 
 		//--------------WINDOWS CONFIGURATION-------------------
 		setTitle("Bizarre Adventures ");//
-		setSize(1200, 1000);
+		setSize(1200, 700);
 		//setExtendedState(JFrame.MAXIMIZED_BOTH);//
 		setUndecorated(true);//
 		this.setContentPane(menuScreen);
@@ -92,5 +92,11 @@ public class Window extends JFrame {
 		this.sequenceScreen.setVisible(true);
 		this.setContentPane(this.sequenceScreen);
 		
+	}
+	
+	public void loadFightScreen() {
+		this.sequenceScreen.setVisible(false);
+		this.fightScreen.setVisible(true);
+		this.setContentPane(this.fightScreen);
 	}
 }

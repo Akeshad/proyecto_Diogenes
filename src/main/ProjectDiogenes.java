@@ -32,7 +32,7 @@ public class ProjectDiogenes {
 	 */
 	public static void main(String[] args) {
 		// TODO code application logic here
-		//Window window = new Window();
+		Window window = new Window();
 
 		Argument argumento0 = new Argument("Escopeta", "Eres Feo", (byte)1,(byte)0,
 				Type1.DUALISTA, Type2.MECANICISTA);

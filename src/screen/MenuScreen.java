@@ -68,7 +68,7 @@ public class MenuScreen extends JPanel{
 		add(iconoMenuP);
 		
 		JLabel fondoMenuP = new JLabel("");
-		fondoMenuP.setBounds(0, 0, 1280, 1024);
+		fondoMenuP.setBounds(0, 0, 1280, 700);
 		fondoMenuP.setIcon(new ImageIcon("C:\\GIT\\proyecto_Diogenes\\img\\fondo1.png"));
 		add(fondoMenuP);
 		setVisible(true);
