@@ -1,12 +1,14 @@
 
 package classes;
 
+import javax.swing.JButton;
+
 /**
  *
  * @author SaraPdrui
  * this class represents an argument that is used by one philosopher
  */
-public final class Argument {
+public final class Argument extends JButton{
     
    private String weapon;//String que recoge el nombre de un argumento, este hombre corresponderá a un arma
    private String text;//String que recoge el contenido del argumento

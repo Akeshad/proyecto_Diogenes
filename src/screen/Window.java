@@ -4,6 +4,7 @@ package screen;
 import javax.swing.*;
 
 import classes.Game;
+import classes.MainCharacter;
 
 import java.awt.Font;
 import java.awt.Color;
@@ -21,12 +22,12 @@ public class Window extends JFrame {
 	private SequenceScreen sequenceScreen;///Game's sequence JPanel 
 	private FightScreen fightScreen;//Fight event JPanel 
 	private Game game;
+	private MainCharacter mainCharacter;
 
 
 	public Window() {
 		super();
-		sequenceScreen = new SequenceScreen(this);
-		sequenceScreen = new SequenceScreen(this);
+		//jugador=new MainChara...
 		menuScreen = new MenuScreen(this);
 		introScreen = new IntroScreen(this);
 		fightScreen = new FightScreen(this);
@@ -87,7 +88,7 @@ public class Window extends JFrame {
 
 	
 	public void loadSequenceScreen() {
-		
+		sequenceScreen = new SequenceScreen(this);
 		this.menuScreen.setVisible(false);
 		this.sequenceScreen.setVisible(true);
 		this.setContentPane(this.sequenceScreen);

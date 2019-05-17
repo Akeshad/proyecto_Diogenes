@@ -8,6 +8,7 @@ public class IntroScreen extends JPanel{
 public IntroScreen(Window w) {
 	super();
 	this.w = w;
+	//w.getJugador().setArguments(.w...)
 }
  
  

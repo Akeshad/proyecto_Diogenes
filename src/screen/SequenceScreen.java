@@ -45,21 +45,21 @@ public class SequenceScreen extends JPanel{
 		add(nextButton);
 		
 		JTextPane textBox = new JTextPane();
-		textBox.setText("Prueba ");
+		textBox.setText("Buenos días");
 		textBox.setBackground(new Color(255, 204, 102));
 		textBox.setBounds(0, 625, 1100, 50);
 		add(textBox);
 		
-		JLabel imagenFondo = new JLabel("");
-		imagenFondo.setIcon(new ImageIcon("C:\\GIT\\proyecto_Diogenes\\img\\fondo1.png"));
-		imagenFondo.setBounds(0, 0, 1200, 700);
-		add(imagenFondo);
+		JLabel backgroundImage = new JLabel("");
+		backgroundImage.setIcon(new ImageIcon("C:\\GIT\\proyecto_Diogenes\\img\\fondo1.png"));
+		backgroundImage.setBounds(0, 0, 1200, 700);
+		add(backgroundImage);
+
+		new Thread(new ImageTextChanger(this, backgroundImage, textBox, "\\img\\icono1.png", "Hola de nuevo",2000)).start();
+		new Thread(new ImageTextChanger(this, backgroundImage, textBox, "\\img\\fondo1.png", "Ñeñeñeñeñe",2000)).start();
 		
 		
 	}
-	
-	
-	
 	
 }
 

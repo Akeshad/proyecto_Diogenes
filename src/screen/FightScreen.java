@@ -17,6 +17,7 @@ import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.GridLayout;
 
 
 public class FightScreen extends JPanel{
@@ -33,29 +34,13 @@ public class FightScreen extends JPanel{
 		textPane.setBounds(0, 225, 450, 27);
 		add(textPane);
 		
-		ButtonFight argumento1 = new ButtonFight("Argumento1");
-		argumento1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-			
-			}
-		});
-		argumento1.setBounds(0, 255, 104, 45);
-		add(argumento1);
-		
-		ButtonFight argumento2 = new ButtonFight("Argumento2");
-		argumento2.setBounds(114, 255, 107, 45);
-		add(argumento2);
-		
-		ButtonFight argumento3 = new ButtonFight("Argumento3");
-		argumento3.setBounds(231, 255, 104, 45);
-		add(argumento3);
-		
-		ButtonFight argumento4 = new ButtonFight("Argumento4");
-		
-		argumento4.setBounds(340, 255, 110, 45);
-		add(argumento4);
-		
+		JPanel panelArgumentos = new JPanel();
+		panelArgumentos.setBounds(0, 0, 10, 10);
+		add(panelArgumentos);
+		panelArgumentos.setLayout(new GridLayout(1, 0, 0, 0));
+		//ArrayList args=this.ventana.getJugador().getArgumentos()
+		//for(i=0; i<args.size()
+			//	panelArgumentos.add(comp)
 		JLabel imagenLabel = new JLabel("");
 		imagenLabel.setIcon(new ImageIcon("C:\\GIT\\proyecto_Diogenes\\img\\fondo1.png"));
 		imagenLabel.setBounds(0, 0, 450, 300);
