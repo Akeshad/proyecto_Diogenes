@@ -2,6 +2,8 @@
 package classes;
 
 import javax.swing.JButton;
+import java.awt.Font;
+import java.awt.Color;
 
 /**
  *
@@ -62,6 +64,13 @@ public final class Argument extends JButton{
 		this.timesLost = timesLost;
 		this.type1 = type1;
 		this.type2 = type2;
+		
+		
+		//-------------BUTTON COMPONENTS------------------
+		
+		setBackground(new Color(255, 215, 0));
+		setForeground(new Color(0, 0, 0));
+		setFont(new Font("Malgun Gothic", Font.PLAIN, 15));
 	}
 
 	/**
@@ -134,7 +143,8 @@ public final class Argument extends JButton{
 	public void setStrength(byte strength) {
 		this.strength = strength;
 	}
+	
+	
     
   
-}//End of the class MÁS ADELANTE QUITAREMOS LOS SETTER, PARA QUE NO SE LE PUEDA METER NADA 
-//TAMBIEN, SI EL ENUM ES NULL, NO SE PUEDE METER ARGUMENTOS
+}//End of the class 

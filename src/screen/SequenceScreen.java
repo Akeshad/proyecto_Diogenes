@@ -32,7 +32,7 @@ public class SequenceScreen extends JPanel{
 		this.w = w;
 		setLayout(null);
 		
-		JButton nextButton = new JButton("Siguiente");
+		JButton nextButton = new JButton("Saltar Intro");
 		nextButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -45,9 +45,10 @@ public class SequenceScreen extends JPanel{
 		add(nextButton);
 		
 		JTextPane textBox = new JTextPane();
-		textBox.setText("Buenos días");
+		textBox.setFont(new Font("Malgun Gothic", Font.PLAIN, 24));
+		textBox.setText("Un día cualquiera en la antigua Hélade...");
 		textBox.setBackground(new Color(255, 204, 102));
-		textBox.setBounds(0, 625, 1100, 50);
+		textBox.setBounds(0, 581, 1100, 94);
 		add(textBox);
 		
 		JLabel backgroundImage = new JLabel("");
@@ -55,8 +56,11 @@ public class SequenceScreen extends JPanel{
 		backgroundImage.setBounds(0, 0, 1200, 700);
 		add(backgroundImage);
 
-		new Thread(new ImageTextChanger(this, backgroundImage, textBox, "\\img\\icono1.png", "Hola de nuevo",2000)).start();
-		new Thread(new ImageTextChanger(this, backgroundImage, textBox, "\\img\\fondo1.png", "Ñeñeñeñeñe",2000)).start();
+		new Thread(new ImageTextChanger(this, backgroundImage, textBox, "C:\\GIT\\proyecto_Diogenes\\img\\icono1.png", "-Te he dicho que Platón es un pamplinas, se nota que procede de la alta cuna...¡Hip! \n"
+				+ "-Creo que ha bebido demasiado, vayamos a dormir y ya mañana vamos a tirarle fruta al Ágora"
+				+ "",8000)).start();
+		new Thread(new ImageTextChanger(this, backgroundImage, textBox, "C:\\GIT\\proyecto_Diogenes\\img\\fondo1.png", "Creo que ya ha bebido suficiente, es hora de que vayamos a descansar",16000)).start();
+		
 		
 		
 	}
