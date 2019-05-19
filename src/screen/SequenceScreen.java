@@ -61,7 +61,7 @@ public class SequenceScreen extends JPanel{
 				+ "",8000)).start();
 		new Thread(new ImageTextChanger(this, backgroundImage, textBox, "C:\\GIT\\proyecto_Diogenes\\img\\fondo1.png", "Creo que ya ha bebido suficiente, es hora de que vayamos a descansar",16000)).start();
 		
-		
+		//hacer un nuevo hilo al final que dure más que todo y cambiar el texto de saltar intro
 		
 	}
 	

@@ -4,6 +4,8 @@ package classes;
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.Color;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  *
@@ -58,6 +60,12 @@ public final class Argument extends JButton{
     
     public Argument(String weapon, String text, byte strength, byte timesLost, Type1 type1, Type2 type2) {
 		super();
+		addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+			}
+		});
 		this.weapon = weapon;
 		this.text = text;
 		this.strength = strength;

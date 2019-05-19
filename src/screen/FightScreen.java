@@ -84,7 +84,7 @@ public class FightScreen extends JPanel{
 			editorPane.setForeground(Color.WHITE);
 			editorPane.setFont(new Font("Malgun Gothic", Font.PLAIN, 19));
 			editorPane.setBounds(0, 500, 1200, 120);
-			editorPane.setText(argumento1.toString());
+			editorPane.setText(argumento1.getText());
 			add(editorPane);
 
 			//------------ADD ARGUMENT PANEL-----------------
