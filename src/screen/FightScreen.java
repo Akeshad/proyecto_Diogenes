@@ -29,6 +29,7 @@ import java.awt.event.MouseEvent;
 import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
+import javax.swing.JTextPane;
 
 
 public class FightScreen extends JPanel{
@@ -38,11 +39,27 @@ public class FightScreen extends JPanel{
 	private JPanel argumentPanel;
 	private JTextArea editorPane;
 	private Argument philosopherBest;
-
+    private JTextPane diogenesText;
 
 	public FightScreen(Window w) {
 		super();
 		setLayout(null);	
+	
+		JLabel descartes = new JLabel("");
+		descartes.setIcon(new ImageIcon("C:\\GIT\\proyecto_Diogenes\\img\\descartes.png"));
+		descartes.setBounds(830, 20, 900, 300);
+		add(descartes);
+		
+		JLabel diogenes = new JLabel("");
+		diogenes.setIcon(new ImageIcon("C:\\GIT\\proyecto_Diogenes\\img\\diogenes.png"));
+		diogenes.setBounds(10, 200, 400, 300);
+		add(diogenes);
+		
+		this.diogenesText = new JTextPane();
+		diogenesText.setBackground(new Color(255, 255, 153));
+		diogenesText.setBounds(220, 150, 250, 150);
+		diogenesText.setEditable(false);
+		add(diogenesText);
 
 
 
@@ -89,6 +106,7 @@ public class FightScreen extends JPanel{
 
 					if (e.getActionCommand() == characterArgument.getWeapon()) {
 						
+						diogenesText.setText(characterArgument.getText());
 						try {			
 							Argument winner = MainCharacter.winnerArgument(philosopherBest, characterArgument);
 
@@ -110,7 +128,7 @@ public class FightScreen extends JPanel{
 						if (philosopher.getTimesLost() >= 5) {
 							editorPane.setText("Hurrita");
 							JOptionPane.showMessageDialog(w, "Hurrita");
-							//pasar siguiente pantalla
+							w.loadSequenceScreen();
 						} else if(mainCharacter.getTimesLost() >= 5) {
 							JOptionPane.showMessageDialog(w, "Mecachis");
 						} else {

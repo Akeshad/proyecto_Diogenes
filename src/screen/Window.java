@@ -90,15 +90,25 @@ public class Window extends JFrame {
 
 	public void transition() {		
 		this.game.getIndex();
-		
+
 	}
-	
-	
+
+
 	//--------------SEQUENCESCREEN CONFIGURATION-------------------
-	
+
 	public void loadSequenceScreen() {
 		sequenceScreen = new SequenceScreen(this);
-		this.menuScreen.setVisible(false);
+
+		if(this.menuScreen != null) {
+			this.sequenceScreen.firstSequence();
+			this.menuScreen.setVisible(false);
+			
+		}else if(this.fightScreen != null ) {
+			this.sequenceScreen.secondSequence();
+			this.fightScreen.setVisible(false);
+			
+		}
+
 		this.sequenceScreen.setVisible(true);
 		this.setContentPane(this.sequenceScreen);
 
@@ -115,6 +125,8 @@ public class Window extends JFrame {
 
 
 	}
+
+
 
 
 

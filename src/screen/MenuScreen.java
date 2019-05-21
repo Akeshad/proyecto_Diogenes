@@ -53,16 +53,20 @@ public class MenuScreen extends JPanel{
 				MainCharacter diogenes = null;
 				
 				//------------ADD PHILOSOPHER ARGUMENTS-----------------
-				Argument argumento0 = new Argument("Escopeta", "Eres Feo", (byte)1,(byte)0,
+				Argument argumento0 = new Argument("Escopeta", "la verdad no se encuentra en la Naturaleza", (byte)1,(byte)0,
 						Type1.DUALISTA, Type2.MECANICISTA);
 
-				Argument argumento1 = new Argument("Cuchillo", "Eres un gato", (byte)2,(byte)0,
+				Argument argumento1 = new Argument("Cuchillo", "La verdad se encuentra en el interior del individuo", (byte)2,(byte)0,
 						Type1.DUALISTA, Type2.MECANICISTA);
 
-				Argument argumento2 = new Argument("Hacha", "Las Salchichas son buenas", (byte)3,(byte)0,
+				Argument argumento2 = new Argument("Hacha", "Los sentidos nos han engañado ciertas\r\n" + 
+						"veces. Bastará con que nos hayan engañado una sola vez para no fiarnos de ellos", (byte)3,(byte)0,
 						Type1.DUALISTA, Type2.MECANICISTA);
 
 				Argument argumento4 = new Argument("Tanque del Dualismo", "Dios todo lo puede", (byte)7,(byte)0,
+						Type1.DUALISTA, Type2.MECANICISTA);
+				Argument argumento5 = new Argument("Subfusil evidente", "No debemos admitir jamás como verdadera cosa\r\n" + 
+						"alguna sin saber con evidencia que lo era…”", (byte)6,(byte)0,
 						Type1.DUALISTA, Type2.MECANICISTA);
 
 				//------------ADD PHILOSOPHER ARRAYLIST ARGUMENTS-----------------
@@ -73,10 +77,11 @@ public class MenuScreen extends JPanel{
 				argumentoL.add(argumento4);
 
 				//------------ADD MAIN CHARACTER ARGUMENTS-----------------
-				Argument argumentoP0 = new Argument("Espada", "Eres Feo", (byte)1,(byte)0,
+				Argument argumentoP0 = new Argument("Espada", "La naturaleza es, en primer lugar, el conjunto o totalidad de los seres del \n" + 
+						"universo, en ella está la verdad", (byte)1,(byte)0,
 						Type1.DUALISTA, Type2.MONISTA);
 
-				Argument argumentoP2 = new Argument("Cabezaso Dividno", "Las Salchichas son buenas", (byte)3,(byte)0,
+				Argument argumentoP2 = new Argument("Cabezaso Dividno", ".El universo es un todo ordenado o cosmos, los hombres pueden leer sus leyes, basta con observar la naturaleza", (byte)3,(byte)0,
 						Type1.DUALISTA, Type2.MONISTA);
 
 				Argument argumentoP3 = new Argument("Calcetín sucio", "Te voy a matar", (byte)4,(byte)0,
