@@ -3,9 +3,10 @@ package screen;
 
 import javax.swing.*;
 
+import classes.Argument;
 import classes.Game;
 import classes.MainCharacter;
-
+import classes.Philosopher;
 import java.awt.Font;
 import java.awt.Color;
 
@@ -18,18 +19,19 @@ public class Window extends JFrame {
 
 	private CreditsScreen creditsScreen;//Credits JPanel 
 	private MenuScreen menuScreen;//Menu JPanel 
-	private IntroScreen introScreen;//Game's intro JPanel 
+	private Argument philosopherBest;
 	private SequenceScreen sequenceScreen;///Game's sequence JPanel 
 	private FightScreen fightScreen;//Fight event JPanel 
 	private Game game;
 	private MainCharacter mainCharacter;
-
+	private Philosopher philosopher;
+	
 
 	public Window() {
 		super();
 		//jugador=new MainChara...
 		menuScreen = new MenuScreen(this);
-		introScreen = new IntroScreen(this);
+	//	introScreen = new IntroScreen(this);
 		fightScreen = new FightScreen(this);
 
 		//--------------WINDOWS CONFIGURATION-------------------
@@ -96,8 +98,85 @@ public class Window extends JFrame {
 	}
 	
 	public void loadFightScreen() {
+		
+		this.fightScreen.setPhilosopher(philosopher);
+		this.fightScreen.setMainCharacter(mainCharacter);
+		this.fightScreen.initArgument();
 		this.sequenceScreen.setVisible(false);
 		this.fightScreen.setVisible(true);
 		this.setContentPane(this.fightScreen);
+		
+		
 	}
+
+	
+	
+	//--------------GETTERS AND SETTERS-------------------
+	public CreditsScreen getCreditsScreen() {
+		return creditsScreen;
+	}
+
+	public void setCreditsScreen(CreditsScreen creditsScreen) {
+		this.creditsScreen = creditsScreen;
+	}
+
+	public MenuScreen getMenuScreen() {
+		return menuScreen;
+	}
+
+	public void setMenuScreen(MenuScreen menuScreen) {
+		this.menuScreen = menuScreen;
+	}
+
+	//public IntroScreen getIntroScreen() {
+		//return introScreen;
+	//}
+
+	//public void setIntroScreen(IntroScreen introScreen) {
+	//	this.introScreen = introScreen;
+	//}
+
+	public SequenceScreen getSequenceScreen() {
+		return sequenceScreen;
+	}
+
+	public void setSequenceScreen(SequenceScreen sequenceScreen) {
+		this.sequenceScreen = sequenceScreen;
+	}
+
+	public FightScreen getFightScreen() {
+		return fightScreen;
+	}
+
+	public void setFightScreen(FightScreen fightScreen) {
+		this.fightScreen = fightScreen;
+	}
+
+	public Game getGame() {
+		return game;
+	}
+
+	public void setGame(Game game) {
+		this.game = game;
+	}
+
+	public MainCharacter getMainCharacter() {
+		return mainCharacter;
+	}
+
+	public void setMainCharacter(MainCharacter mainCharacter) {
+		this.mainCharacter = mainCharacter;
+	}
+	
+	public Philosopher getPhilosopher() {
+		return philosopher;
+		
+	}
+	
+	public void setPhilosopher(Philosopher philosopher) {
+		this.philosopher = philosopher;
+	}
+	
+	
+	
 }

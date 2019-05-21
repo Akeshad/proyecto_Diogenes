@@ -61,6 +61,7 @@ public class ProjectDiogenes {
 				Type1.DUALISTA, Type2.MONISTA);
 
 
+		
 		ArrayList<Argument> argumentoLP = new ArrayList<Argument>();
 		argumentoLP.add(argumentoP0);
 		argumentoLP.add(argumentoP2);

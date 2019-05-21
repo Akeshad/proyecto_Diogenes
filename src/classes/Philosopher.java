@@ -6,6 +6,9 @@
 package classes;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Random;
 
 import exceptions.LenghtArgumentException;
 import exceptions.LenghtCharacterArgumentException;
@@ -17,7 +20,8 @@ import exceptions.NameException;
  */
 public class Philosopher {
      protected String name; // Philosopher´s name 
-     protected ArrayList<Argument> arguments = new ArrayList<Argument>();// Philosopher´s arguments 
+ //    protected ArrayList<Argument> arguments = new ArrayList<Argument>();// Philosopher´s arguments 
+     protected HashMap<String,Argument> arguments;
      protected int timesLost;
      
 
@@ -29,11 +33,13 @@ public class Philosopher {
      * @throws NameException 
      * @throws LenghtArgumentException 
      */
-    public Philosopher(String name, ArrayList<Argument> arguments) throws LenghtCharacterArgumentException, NameException, LenghtArgumentException {
+    public Philosopher(String name, HashMap<String,Argument> arguments) throws LenghtCharacterArgumentException, NameException, LenghtArgumentException {
 		super();
+		this.arguments=new HashMap<String,Argument>();
 		this.setName(name);
 		this.setArguments(arguments);
-	}
+	
+    }
     
     /**
      * 
@@ -60,7 +66,7 @@ public class Philosopher {
 	 * 
 	 * @return
 	 */
-	public ArrayList<Argument> getArguments() {
+	public HashMap<String,Argument> getArguments() {
 		return arguments;
 	}
 	
@@ -70,7 +76,7 @@ public class Philosopher {
 	 * @throws LenghtCharacterArgumentException 
 	 * @throws LenghtArgumentException 
 	 */
-	public void setArguments(ArrayList<Argument> arguments) throws LenghtCharacterArgumentException, LenghtArgumentException {
+	public void setArguments(HashMap<String,Argument> arguments) throws LenghtCharacterArgumentException, LenghtArgumentException {
 		if (arguments.size()<=4) {
 			this.arguments = arguments;
 		}else {
@@ -88,7 +94,18 @@ public class Philosopher {
 		}
     
 	
-	
+		public  Argument getRdArgument() {
+			Random rd = new Random();
+			HashMap<String,Argument> argumentsLs = this.getArguments();
+			int limite=rd.nextInt(argumentsLs.size());
+			Iterator it=argumentsLs.entrySet().iterator();
+			Argument a=null;
+			for(int i=0;i<limite;i++) {
+				a=(Argument) it.next();
+			}
+			return a;	
+		}
+
 	/**
 	 * This function calculate the best argument for a fight
 	 * @param Argument
