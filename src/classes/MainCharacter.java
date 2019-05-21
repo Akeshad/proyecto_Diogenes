@@ -2,6 +2,7 @@
 package classes;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 
 import classes.Argument.Type1;
@@ -19,13 +20,13 @@ import exceptions.TypeException;
 public class MainCharacter extends Philosopher {
 
 
-	public MainCharacter(String name, ArrayList<Argument> arguments) throws LenghtCharacterArgumentException, NameException, LenghtArgumentException {
+	public MainCharacter(String name, HashMap<String,Argument> arguments) throws LenghtCharacterArgumentException, NameException, LenghtArgumentException {
 		super(name, arguments);
 	}
 
 
 	@Override
-	public void setArguments(ArrayList<Argument> arguments) throws LenghtCharacterArgumentException {
+	public void setArguments(HashMap<String,Argument> arguments) throws LenghtCharacterArgumentException {
 		if (arguments.size()<=3) {
 			this.arguments = arguments;
 		}else {

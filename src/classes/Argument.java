@@ -118,11 +118,7 @@ public final class Argument{
 		this.strength = strength;
 		this.timesLost = timesLost;
 		this.type1 = type1;
-		this.type2 = type2;
-		
-		
-	
-		
+		this.type2 = type2;		
 	}
 
 	/**
