@@ -4,6 +4,8 @@ public class Fight extends Actions {
 
 	private Philosopher philosopher; // philosopher 
 
+	
+	
 	public Fight(Philosopher philosopher) {
 		super();
 		this.philosopher = philosopher;

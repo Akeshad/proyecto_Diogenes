@@ -88,8 +88,9 @@ public class Window extends JFrame {
 
 	//--------------TRANSITION CONFIGURATION-------------------
 
-	public void transition() {
-
+	public void transition() {		
+		this.game.getIndex();
+		
 	}
 	
 	
