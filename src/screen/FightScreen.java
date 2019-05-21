@@ -74,9 +74,9 @@ public class FightScreen extends JPanel{
 	
 	public void initArgument() {
 		
-		ArrayList<Argument> arguments = philosopher.getArguments();
+		ArrayList<Argument> arguments = mainCharacter.getArguments();
 		
-		philosopherBest = philosopher.getRdArgument(philosopher);
+		philosopherBest = philosopher.getRdArgument();
 		
 		editorPane.setText(philosopherBest.getText());
 
@@ -114,7 +114,7 @@ public class FightScreen extends JPanel{
 						} else if(mainCharacter.getTimesLost() >= 5) {
 							JOptionPane.showMessageDialog(w, "Mecachis");
 						} else {
-							philosopherBest = philosopher.getRdArgument(philosopher);
+							philosopherBest = philosopher.getRdArgument();
 							editorPane.setText(philosopherBest.getText());
 						}
 					}

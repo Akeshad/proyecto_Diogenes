@@ -90,9 +90,9 @@ public class Philosopher {
 		}
 	
 		
-		public  Argument getRdArgument(Philosopher p) {
+		public  Argument getRdArgument() {
 			Random rd = new Random();
-			ArrayList<Argument> argumentsLs = p.getArguments();
+			ArrayList<Argument> argumentsLs = this.getArguments();
 
 			return argumentsLs.get(rd.nextInt(argumentsLs.size()));	
 		}
