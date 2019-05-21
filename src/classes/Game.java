@@ -1,75 +1,77 @@
 
 package classes;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author SaraPdrui
  */
 public class Game {
     
-    private String nombre; //String que recoge el nombre de una partida
-    private MainCharacter personaje;//Personaje que recoge el personaje de una partida
-    private Philosopher filosofos; // Array list que recoge a los filósofos superados en la partida
+    private String nombre; //
+    private MainCharacter personaje;//
+    private Actions actions; 
+    private ArrayList<Actions> index;
     
-    /**
-     * Constructor de la una Partida
-     * @param nombre
-     * @param personaje
-     * @param filosofos 
-     */
-    public Game(String nombre, MainCharacter personaje, Philosopher filosofos) {
-        this.nombre = nombre;
-        this.personaje = personaje;
-        this.filosofos = filosofos;
-    }
     
-    /**
-     * Obtiene un nombre tipo String
-     * @return nombre
-     */
-    public String getNombre() {
-        return nombre;
-    }
     
-    /**
-     * Establece un nombre tipo String
-     * @param nombre 
-     */
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+	public Game(String nombre, MainCharacter personaje, Actions actions, ArrayList<Actions> index) {
+		super();
+		this.nombre = nombre;
+		this.personaje = personaje;
+		this.actions = actions;
+		this.index = index;
+	}
 
-    /**
-     * Obtiene un personaje tipo personaje
-     * @return personaje
-     */
-    public MainCharacter getPersonaje() {
-        return personaje;
-    }
+
+
+	public String getNombre() {
+		return nombre;
+	}
+
+
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+
+
+	public MainCharacter getPersonaje() {
+		return personaje;
+	}
+
+
+
+	public void setPersonaje(MainCharacter personaje) {
+		this.personaje = personaje;
+	}
+
+
+
+	public Actions getActions() {
+		return actions;
+	}
+
+
+
+	public void setActions(Actions actions) {
+		this.actions = actions;
+	}
+
+
+
+	public ArrayList<Actions> getIndex() {
+		return index;
+	}
+
+
+
+	public void setIndex(ArrayList<Actions> index) {
+		this.index = index;
+	}
     
-    /**
-     * Establece un personaje tipo Personaje
-     * @param personaje 
-     */
-    public void setPersonaje(MainCharacter personaje) {
-        this.personaje = personaje;
-    }
-    
-    /**
-     * Obtiene un array list de filosofos tipo Filosofo
-     * @return filosofos
-     */
-    public Philosopher getFilosofos() {
-        return filosofos;
-    }
-    
-    /**
-     * Establece un array list de filosofos tipo Filosofo
-     * @param filosofos 
-     */
-    public void setFilosofos(Philosopher filosofos) {
-        this.filosofos = filosofos;
-    }
     
     
     

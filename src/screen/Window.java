@@ -22,16 +22,17 @@ public class Window extends JFrame {
 	private Argument philosopherBest;
 	private SequenceScreen sequenceScreen;///Game's sequence JPanel 
 	private FightScreen fightScreen;//Fight event JPanel 
+	private CreationScreen creationScreen;
 	private Game game;
 	private MainCharacter mainCharacter;
 	private Philosopher philosopher;
-	
+
 
 	public Window() {
 		super();
-		//jugador=new MainChara...
+		//mainCharacter = new MainCharacter();
 		menuScreen = new MenuScreen(this);
-	//	introScreen = new IntroScreen(this);
+		creationScreen = new CreationScreen(this);
 		fightScreen = new FightScreen(this);
 
 		//--------------WINDOWS CONFIGURATION-------------------
@@ -40,22 +41,22 @@ public class Window extends JFrame {
 		//setExtendedState(JFrame.MAXIMIZED_BOTH);//
 		setUndecorated(true);//
 		this.setContentPane(menuScreen);
-		
-		
+
+
 		//--------------JMENUBAR CONFIGURATION-------------------
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBackground(new Color(255, 215, 0));
 		menuBar.setForeground(new Color(255, 215, 0));
 		setJMenuBar(menuBar);
 
-		
+
 		//--------------JMENU CONFIGURATION-------------------
 		JMenu optionMenu = new JMenu("Opciones");
 		optionMenu.setBackground(new Color(255, 215, 0));
 		optionMenu.setFont(new Font("Dialog", Font.PLAIN, 16));
 		menuBar.add(optionMenu);
-		
-		
+
+
 		//--------------JMENUITEM CONFIGURATION-------------------
 		MyMenuItem saveMenu = new MyMenuItem("Guardar Partida");
 		saveMenu.addActionListener(new ActionListener() {
@@ -84,33 +85,38 @@ public class Window extends JFrame {
 		this.setVisible(true);
 
 	}
+
+	//--------------TRANSITION CONFIGURATION-------------------
+
+	public void transition() {
+
+	}
+	
 	
 	//--------------SEQUENCESCREEN CONFIGURATION-------------------
-	
-
 	
 	public void loadSequenceScreen() {
 		sequenceScreen = new SequenceScreen(this);
 		this.menuScreen.setVisible(false);
 		this.sequenceScreen.setVisible(true);
 		this.setContentPane(this.sequenceScreen);
-		
+
 	}
-	
+
 	public void loadFightScreen() {
-		
+
 		this.fightScreen.setPhilosopher(philosopher);
 		this.fightScreen.setMainCharacter(mainCharacter);
 		this.fightScreen.initArgument();
 		this.sequenceScreen.setVisible(false);
 		this.fightScreen.setVisible(true);
 		this.setContentPane(this.fightScreen);
-		
-		
+
+
 	}
 
-	
-	
+
+
 	//--------------GETTERS AND SETTERS-------------------
 	public CreditsScreen getCreditsScreen() {
 		return creditsScreen;
@@ -128,13 +134,13 @@ public class Window extends JFrame {
 		this.menuScreen = menuScreen;
 	}
 
-	//public IntroScreen getIntroScreen() {
-		//return introScreen;
-	//}
+	public CreationScreen getCreationScreen() {
+		return creationScreen;
+	}
 
-	//public void setIntroScreen(IntroScreen introScreen) {
-	//	this.introScreen = introScreen;
-	//}
+	public void setCreationScreen(CreationScreen creationScreen) {
+		this.creationScreen = creationScreen;
+	}
 
 	public SequenceScreen getSequenceScreen() {
 		return sequenceScreen;
@@ -167,16 +173,16 @@ public class Window extends JFrame {
 	public void setMainCharacter(MainCharacter mainCharacter) {
 		this.mainCharacter = mainCharacter;
 	}
-	
+
 	public Philosopher getPhilosopher() {
 		return philosopher;
-		
+
 	}
-	
+
 	public void setPhilosopher(Philosopher philosopher) {
 		this.philosopher = philosopher;
 	}
-	
-	
-	
+
+
+
 }
