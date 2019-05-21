@@ -76,7 +76,6 @@ public class FightScreen extends JPanel{
 	
 	public void initArgument() {
 		
-		ArrayList <Argument> arguments = philosopher.getArguments();
 		
 		philosopherBest = philosopher.getRdArgument();
 		
@@ -86,7 +85,6 @@ public class FightScreen extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-					Argument characterArgument = arguments.get(i);
 					e.getActionCommand();
 					if(!mainCharacter.getArguments().get(e.getActionCommand()).beats(philosopherBest)) {
 						mainCharacter.setTimesLost(mainCharacter.getTimesLost() + 1);
@@ -94,9 +92,6 @@ public class FightScreen extends JPanel{
 					} else{
 						philosopher.setTimesLost(philosopher.getTimesLost() + 1);
 					}
-					
-
-
 						} catch (TypeException ex) {
 							ex.printStackTrace();
 						} catch (NotFoundArgumentException e1) {
@@ -121,10 +116,10 @@ public class FightScreen extends JPanel{
 					//}
 				}
  
-			}
+			
 		};
 
-		for (int i = 0; i < arguments.size(); i++) {
+		for (int i = 0; i < mainCharacter.getArguments().size(); i++) {
 			Argument argument = arguments.get(i);
 
 			JButton argumentButton = new JButton(argument.getWeapon());
