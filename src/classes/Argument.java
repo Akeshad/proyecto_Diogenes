@@ -2,23 +2,17 @@
 package classes;
 
 import javax.swing.JButton;
-
-import classes.Argument.Type1;
-import classes.Argument.Type2;
-import exceptions.TypeException;
-
 import java.awt.Font;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.Random;
 
 /**
  *
  * @author SaraPdrui
  * this class represents an argument that is used by one philosopher
  */
-public final class Argument{
+public final class Argument extends JButton{
     
    private String weapon;//String que recoge el nombre de un argumento, este hombre corresponderá a un arma
    private String text;//String que recoge el contenido del argumento
@@ -44,53 +38,6 @@ public final class Argument{
         IDENTIDAD,
         CONDUCTISTA
     };
-    
-	/**
-	 * Function that established a witch is the strongest Type1
-	 * @param tp
-	 * @return int
-	 * @throws TypeException
-	 */
-
-	public  int type1Strenght() throws TypeException {
-		switch (this.type1) {
-		case DUALISTA:
-			return 0;
-		case MATERIALISTA:
-			return 1;
-		default:
-			throw new TypeException("Tipo no reconocido");
-		}
-	}
-
-	/**
-	 * Function that established a witch is the strongest Type2 
-	 * @param tp
-	 * @return int
-	 * @throws TypeException
-	 */
-
-	public  int type2Strenght() throws TypeException {
-		switch (this.type2) {
-		case MONISTA:
-			return 0;
-		case MECANICISTA:
-			return 1;
-		case CONDUCTISTA:
-			return 2;
-		case FUNCIONALISTA:
-			return 3;
-		case IDENTIDAD:
-			return 4;
-		case ELIMINATIVO:
-			return 5;
-		case NATURALISTA:
-			return 6;
-		default:
-			throw new TypeException("Tipo no reconocido");
-		}
-	}
-
 
   
     /**
@@ -113,12 +60,25 @@ public final class Argument{
     
     public Argument(String weapon, String text, byte strength, byte timesLost, Type1 type1, Type2 type2) {
 		super();
+		addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+			}
+		});
 		this.weapon = weapon;
 		this.text = text;
 		this.strength = strength;
 		this.timesLost = timesLost;
 		this.type1 = type1;
-		this.type2 = type2;		
+		this.type2 = type2;
+		
+		
+		//-------------BUTTON COMPONENTS------------------
+		
+		setBackground(new Color(255, 215, 0));
+		setForeground(new Color(0, 0, 0));
+		setFont(new Font("Malgun Gothic", Font.PLAIN, 15));
 	}
 
 	/**
@@ -182,34 +142,6 @@ public final class Argument{
 	 */
 	public byte getStrength() {
 		return strength;
-	}
-	
-	public boolean beats(Argument r) throws TypeException {
-
-		if(this.strength >strength) {
-			return true;
-		}else if(strength < r.strength){
-			return false;			
-		}else if(this.type1Strenght() > r.type1Strenght()){
-			return true;
-		}else if(type1Strenght() < r.type1Strenght()){
-			return false;
-		}else if(type2Strenght() > r.type2Strenght()){
-			return true;
-		}else if(type2Strenght() < r.type2Strenght()){
-			return false;
-
-			//if everything fails, we throw a coin
-		}else {
-			Random rd = new Random();
-			boolean resultado = rd.nextBoolean();
-
-			if(resultado) {
-				return true;
-			}
-				return false;
-			
-		}
 	}
 
 	/**

@@ -1,4 +1,5 @@
 /*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -6,8 +7,6 @@
 package classes;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Random;
 
 import exceptions.LenghtArgumentException;
@@ -20,8 +19,7 @@ import exceptions.NameException;
  */
 public class Philosopher {
      protected String name; // Philosopher´s name 
- //    protected ArrayList<Argument> arguments = new ArrayList<Argument>();// Philosopher´s arguments 
-     protected HashMap<String,Argument> arguments;
+     protected ArrayList<Argument> arguments = new ArrayList<Argument>();// Philosopher´s arguments 
      protected int timesLost;
      
 
@@ -33,13 +31,11 @@ public class Philosopher {
      * @throws NameException 
      * @throws LenghtArgumentException 
      */
-    public Philosopher(String name, HashMap<String,Argument> arguments) throws LenghtCharacterArgumentException, NameException, LenghtArgumentException {
+    public Philosopher(String name, ArrayList<Argument> arguments) throws LenghtCharacterArgumentException, NameException, LenghtArgumentException {
 		super();
-		this.arguments=new HashMap<String,Argument>();
 		this.setName(name);
 		this.setArguments(arguments);
-	
-    }
+	}
     
     /**
      * 
@@ -66,7 +62,7 @@ public class Philosopher {
 	 * 
 	 * @return
 	 */
-	public HashMap<String,Argument> getArguments() {
+	public ArrayList<Argument> getArguments() {
 		return arguments;
 	}
 	
@@ -76,7 +72,7 @@ public class Philosopher {
 	 * @throws LenghtCharacterArgumentException 
 	 * @throws LenghtArgumentException 
 	 */
-	public void setArguments(HashMap<String,Argument> arguments) throws LenghtCharacterArgumentException, LenghtArgumentException {
+	public void setArguments(ArrayList<Argument> arguments) throws LenghtCharacterArgumentException, LenghtArgumentException {
 		if (arguments.size()<=4) {
 			this.arguments = arguments;
 		}else {
@@ -92,25 +88,23 @@ public class Philosopher {
 		public void setTimesLost(int timesLost) {
 			this.timesLost = timesLost;
 		}
-    
 	
-		public  Argument getRdArgument() {
+		
+		public  Argument getRdArgument(Philosopher p) {
 			Random rd = new Random();
-			HashMap<String,Argument> argumentsLs = this.getArguments();
-			int limite=rd.nextInt(argumentsLs.size());
-			Iterator it=argumentsLs.entrySet().iterator();
-			Argument a=null;
-			for(int i=0;i<limite;i++) {
-				a=(Argument) it.next();
-			}
-			return a;	
+			ArrayList<Argument> argumentsLs = p.getArguments();
+
+			return argumentsLs.get(rd.nextInt(argumentsLs.size()));	
 		}
 
 	/**
 	 * This function calculate the best argument for a fight
 	 * @param Argument
 	 */
-	public Argument getBestArgument() {
+	
+		
+		
+		public Argument getBestArgument() {
 		Argument max = null;
 		for (int i = 0; i < arguments.size(); i++) {
 			Argument arg = arguments.get(i);

@@ -71,55 +71,58 @@ public class FightScreen extends JPanel{
 		imagenLabel.setBounds(0, 0, 1200, 800);
 		add(imagenLabel);
 	}
-
-	
 	
 	public void initArgument() {
 		
+		ArrayList<Argument> arguments = philosopher.getArguments();
 		
-		philosopherBest = philosopher.getRdArgument();
+		philosopherBest = philosopher.getRdArgument(philosopher);
 		
 		editorPane.setText(philosopherBest.getText());
 
 		ActionListener myListener = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				try {
-					e.getActionCommand();
-					if(!mainCharacter.getArguments().get(e.getActionCommand()).beats(philosopherBest)) {
-						mainCharacter.setTimesLost(mainCharacter.getTimesLost() + 1);
+				
+				for	(int i = 0; i < arguments.size(); i++) {
+					Argument characterArgument = arguments.get(i);
 
-					} else{
-						philosopher.setTimesLost(philosopher.getTimesLost() + 1);
-					}
+					if (e.getActionCommand() == characterArgument.getWeapon()) {
+						
+						try {			
+							Argument winner = MainCharacter.winnerArgument(philosopherBest, characterArgument);
+
+							ArrayList<Argument> philosopherArguments = philosopher.getArguments();
+							
+							if (!arguments.contains(winner)) {
+								mainCharacter.setTimesLost(mainCharacter.getTimesLost() + 1);
+							} else if (!(philosopherArguments.contains(winner))) {
+								philosopher.setTimesLost(philosopher.getTimesLost() + 1);
+							} else {
+								throw new NotFoundArgumentException("Ha habido un error en la batalla");
+							}
 						} catch (TypeException ex) {
 							ex.printStackTrace();
 						} catch (NotFoundArgumentException e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
 
-						if(philosopher.getTimesLost() >= 5) {
+						if (philosopher.getTimesLost() >= 5) {
 							editorPane.setText("Hurrita");
 							JOptionPane.showMessageDialog(w, "Hurrita");
 							//pasar siguiente pantalla
-						}else if(mainCharacter.getTimesLost() >= 5) {
+						} else if(mainCharacter.getTimesLost() >= 5) {
 							JOptionPane.showMessageDialog(w, "Mecachis");
-							
-						}
-						else {
-							philosopherBest = philosopher.getRdArgument();
+						} else {
+							philosopherBest = philosopher.getRdArgument(philosopher);
 							editorPane.setText(philosopherBest.getText());
 						}
-						
-						
-					//}
+					}
 				}
- 
-			
+			}
 		};
 
-		for (int i = 0; i < mainCharacter.getArguments().size(); i++) {
+		for (int i = 0; i < arguments.size(); i++) {
 			Argument argument = arguments.get(i);
 
 			JButton argumentButton = new JButton(argument.getWeapon());
@@ -132,11 +135,7 @@ public class FightScreen extends JPanel{
 	}
 	
 	//----------------
-
-	/**
-	 * 
-	 * @return philosopher
-	 */
+	
 	public Philosopher getPhilosopher() {
 		return philosopher;
 	}

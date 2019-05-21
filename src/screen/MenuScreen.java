@@ -16,7 +16,6 @@ import java.io.*;
 import java.util.ArrayList;
 
 import javax.sound.sampled.*;
-import com.jgoodies.forms.layout.FormSpecs;
 
 import classes.Argument;
 import classes.MainCharacter;
@@ -133,4 +132,3 @@ public class MenuScreen extends JPanel{
 
 	}
 }
-
