@@ -14,6 +14,10 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.Timer;
+
+import classes.Message;
+import classes.Sequence;
+
 import javax.swing.JLabel;
 import javax.swing.JTextPane;
 import java.awt.Color;
@@ -28,6 +32,7 @@ public class SequenceScreen extends JPanel{
 	private Window w;
 	private JLabel backgroundImage;
 	private JTextPane textBox;
+	private Sequence sequence;
 
 	public SequenceScreen(Window w) {
 		super();
@@ -38,7 +43,7 @@ public class SequenceScreen extends JPanel{
 		nextButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				w.loadFightScreen();
+				w.transition();
 			}
 		});
 		nextButton.setBackground(new Color(153, 204, 255));
@@ -56,18 +61,20 @@ public class SequenceScreen extends JPanel{
 		this.backgroundImage = new JLabel("");
 		backgroundImage.setIcon(new ImageIcon("C:\\GIT\\proyecto_Diogenes\\img\\fondo1.png"));
 		backgroundImage.setBounds(0, 0, 1200, 700);
-		add(backgroundImage);
-
-		
+		add(backgroundImage);		
 		
 	}
 	
 	
-	public void firstSequence() {
-		new Thread(new ImageTextChanger(this, this.backgroundImage, this.textBox, "C:\\GIT\\proyecto_Diogenes\\img\\icono1.png", "-Te he dicho que Platón es un pamplinas, se nota que procede de la alta cuna...¡Hip! \n"
-				+ "-Creo que ha bebido demasiado, vayamos a dormir y ya mañana vamos a tirarle fruta al Ágora"
-				+ "",8000)).start();
-		new Thread(new ImageTextChanger(this, this.backgroundImage, this.textBox, "C:\\GIT\\proyecto_Diogenes\\img\\fondo1.png", "Creo que ya ha bebido suficiente, es hora de que vayamos a descansar",16000)).start();
+	public void loadNextSequence(Sequence sequence) {
+		 ArrayList<Message> messages = sequence.getMessages();
+		 
+		 for (int i = 0; i < messages.size(); i++) {
+			Message messageShow = messages.get(i);
+			new Thread(new ImageTextChanger(this, this.backgroundImage, this.textBox, messageShow.getLink(), messageShow.getTxt(), messageShow.getMs())).start();
+		}
+		
+		//new Thread(new ImageTextChanger(this, this.backgroundImage, this.textBox, sequence.getLink(), sequence.getTxt(), sequence.getMs())).start();
 		
 		//hacer un nuevo hilo al final que dure más que todo y cambiar el texto de saltar intro
 		}

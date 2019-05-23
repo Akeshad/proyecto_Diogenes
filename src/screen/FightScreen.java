@@ -44,6 +44,7 @@ public class FightScreen extends JPanel{
 	public FightScreen(Window w) {
 		super();
 		setLayout(null);	
+		this.w = w;
 	
 		JLabel descartes = new JLabel("");
 		descartes.setIcon(new ImageIcon("C:\\GIT\\proyecto_Diogenes\\img\\descartes.png"));
@@ -114,8 +115,10 @@ public class FightScreen extends JPanel{
 							
 							if (!arguments.contains(winner)) {
 								mainCharacter.setTimesLost(mainCharacter.getTimesLost() + 1);
+								characterArgument.setTimesLost(characterArgument.getTimesLost() + 1);
 							} else if (!(philosopherArguments.contains(winner))) {
 								philosopher.setTimesLost(philosopher.getTimesLost() + 1);
+								philosopherBest.setTimesLost(philosopherBest.getTimesLost() + 1);
 							} else {
 								throw new NotFoundArgumentException("Ha habido un error en la batalla");
 							}
@@ -125,17 +128,31 @@ public class FightScreen extends JPanel{
 							e1.printStackTrace();
 						}
 
-						if (philosopher.getTimesLost() >= 5) {
-							editorPane.setText("Hurrita");
-							JOptionPane.showMessageDialog(w, "Hurrita");
-							w.loadSequenceScreen();
-						} else if(mainCharacter.getTimesLost() >= 5) {
-							JOptionPane.showMessageDialog(w, "Mecachis");
-						} else {
-							philosopherBest = philosopher.getRdArgument();
-							editorPane.setText(philosopherBest.getText());
+						
+					}
+				}
+				
+
+				if (philosopher.getTimesLost() >= 5) {
+					
+					editorPane.setText("Hurrita");
+					JOptionPane.showMessageDialog(w, "Hurrita");
+					w.transition();
+				} else if(mainCharacter.getTimesLost() >= 5) {
+					for (int i = 0; i < arguments.size(); i++) {
+						Argument argumentLoser = arguments.get(i);
+						if(argumentLoser.getTimesLost() >= 2) {
+							Argument philosopherA = philosopher.getRdArgument();
+							arguments.remove(argumentLoser);
+							arguments.add(i, philosopherA);
+							
 						}
 					}
+					JOptionPane.showMessageDialog(w, "Mecachis");
+					w.transition();
+				} else {
+					philosopherBest = philosopher.getRdArgument();
+					editorPane.setText(philosopherBest.getText());
 				}
 			}
 		};

@@ -1,23 +1,25 @@
 package classes;
 
-import javax.swing.ImageIcon;
+import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JTextPane;
+
+import screen.SequenceScreen;
 import screen.Window;
 
 public class Sequence  extends Actions{
+
+	ArrayList<Message> messages = new ArrayList<Message>();
 	
-	private Window w;
-	private ImageIcon imagen;
-	private String text;
-	
-	public Sequence(Window w, ImageIcon imagen, String text) {
+	public Sequence() {
 		super();
-		this.w = w;
-		this.imagen = imagen;
-		this.text = text;
 	}
-	
-	
-	
+
+	public ArrayList<Message> getMessages() {
+		return messages;
+	}
+
 
 }

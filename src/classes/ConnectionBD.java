@@ -30,9 +30,7 @@ public class ConnectionBD {
 			/**
 			 * Lo que tenemos que hacer ahora es guardar del juego el index y el mainCharacter
 			 */
-			MainCharacter mainCharacter = game.getPersonaje();
-			ArrayList<Actions> index = game.getIndex();
-
+		
 			//2 - Create an statement object and insert into pokemon table.  (you can skip id , as it is auto-incremented)
 			Statement registerStatement = conn.createStatement();
 

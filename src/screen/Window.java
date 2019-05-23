@@ -3,13 +3,18 @@ package screen;
 
 import javax.swing.*;
 
+import classes.Actions;
 import classes.Argument;
+import classes.Fight;
 import classes.Game;
 import classes.MainCharacter;
 import classes.Philosopher;
+import classes.Sequence;
+
 import java.awt.Font;
 import java.awt.Color;
 
+import components.Background;
 import components.MyMenuItem;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -19,14 +24,10 @@ public class Window extends JFrame {
 
 	private CreditsScreen creditsScreen;//Credits JPanel 
 	private MenuScreen menuScreen;//Menu JPanel 
-	private Argument philosopherBest;
 	private SequenceScreen sequenceScreen;///Game's sequence JPanel 
 	private FightScreen fightScreen;//Fight event JPanel 
 	private CreationScreen creationScreen;
 	private Game game;
-	private MainCharacter mainCharacter;
-	private Philosopher philosopher;
-
 
 	public Window() {
 		super();
@@ -34,6 +35,12 @@ public class Window extends JFrame {
 		menuScreen = new MenuScreen(this);
 		creationScreen = new CreationScreen(this);
 		fightScreen = new FightScreen(this);
+		sequenceScreen = new SequenceScreen(this);
+
+
+		//---------------- SEQUENCE OBJECT ------------------
+
+
 
 		//--------------WINDOWS CONFIGURATION-------------------
 		setTitle("Bizarre Adventures ");//
@@ -86,27 +93,45 @@ public class Window extends JFrame {
 
 	}
 
+
+
+
+
 	//--------------TRANSITION CONFIGURATION-------------------
 
 	public void transition() {		
-		this.game.getIndex();
-
+		
+		int index = this.game.getIndex();
+		
+		
+		if(index >= this.game.getStory().size()) {
+			System.exit(EXIT_ON_CLOSE);			
+		}else {
+			Actions action = this.game.getStory().get(index);
+			game.setIndex(index + 1);
+			if(action instanceof Sequence ) {
+				Sequence seq = (Sequence) action;
+				loadSequenceScreen(seq);
+			}else if(action instanceof Fight){
+				Fight fig = (Fight) action;
+				loadFightScreen(fig);
+			}
+		}
 	}
 
 
 	//--------------SEQUENCESCREEN CONFIGURATION-------------------
 
-	public void loadSequenceScreen() {
-		sequenceScreen = new SequenceScreen(this);
+	public void loadSequenceScreen(Sequence sequence) {
 
 		if(this.menuScreen != null) {
-			this.sequenceScreen.firstSequence();
+			this.sequenceScreen.loadNextSequence(sequence);
 			this.menuScreen.setVisible(false);
-			
+
 		}else if(this.fightScreen != null ) {
-			this.sequenceScreen.secondSequence();
+			this.sequenceScreen.loadNextSequence(sequence);
 			this.fightScreen.setVisible(false);
-			
+
 		}
 
 		this.sequenceScreen.setVisible(true);
@@ -114,10 +139,10 @@ public class Window extends JFrame {
 
 	}
 
-	public void loadFightScreen() {
+	public void loadFightScreen(Fight fight) {
 
-		this.fightScreen.setPhilosopher(philosopher);
-		this.fightScreen.setMainCharacter(mainCharacter);
+		this.fightScreen.setPhilosopher(fight.getPhilosopher());
+		this.fightScreen.setMainCharacter(game.getCharacter());
 		this.fightScreen.initArgument();
 		this.sequenceScreen.setVisible(false);
 		this.fightScreen.setVisible(true);
@@ -125,8 +150,6 @@ public class Window extends JFrame {
 
 
 	}
-
-
 
 
 
@@ -177,23 +200,6 @@ public class Window extends JFrame {
 
 	public void setGame(Game game) {
 		this.game = game;
-	}
-
-	public MainCharacter getMainCharacter() {
-		return mainCharacter;
-	}
-
-	public void setMainCharacter(MainCharacter mainCharacter) {
-		this.mainCharacter = mainCharacter;
-	}
-
-	public Philosopher getPhilosopher() {
-		return philosopher;
-
-	}
-
-	public void setPhilosopher(Philosopher philosopher) {
-		this.philosopher = philosopher;
 	}
 
 

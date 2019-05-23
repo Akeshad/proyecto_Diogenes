@@ -24,10 +24,11 @@ public class MainCharacter extends Philosopher {
 	}
 	
 	@Override
-	public void setArguments(ArrayList<Argument> arguments) throws LenghtCharacterArgumentException {
+	public void setArguments(ArrayList<Argument> arguments) throws LenghtArgumentException, LenghtCharacterArgumentException {
 		if (arguments.size()<=3) {
-			this.arguments = arguments;
-		}else {
+			super.setArguments(arguments);
+			
+		} else {
 			throw new LenghtCharacterArgumentException("You cannot introduce more than 4 arguments");
 		}
 

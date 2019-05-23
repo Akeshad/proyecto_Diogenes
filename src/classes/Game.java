@@ -9,70 +9,78 @@ import java.util.ArrayList;
  */
 public class Game {
     
-    private String nombre; //
-    private MainCharacter personaje;//
-    private Actions actions; 
-    private ArrayList<Actions> index;
+    private String name; //name of the game
+    private MainCharacter character;//
+    private ArrayList<Actions> story;//point of the story
+    private int index;// index that points the point of the story
+    
+
     
     
     
-	public Game(String nombre, MainCharacter personaje, Actions actions, ArrayList<Actions> index) {
+    
+    public Game() {
 		super();
-		this.nombre = nombre;
-		this.personaje = personaje;
-		this.actions = actions;
+		
+		this.story = new ArrayList<Actions>();
+	}
+    /**
+     * Constructor of Game class
+     * @param nombre
+     * @param character
+     * @param actions
+     * @param story
+     * @param index
+     */
+	public Game(String name, MainCharacter character, ArrayList<Actions> story, int index) {
+		super();
+		this.name = name;
+		this.character = character;
+		this.story = story;	
 		this.index = index;
 	}
 
 
 
-	public String getNombre() {
-		return nombre;
-	}
-
-
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-
-
-	public MainCharacter getPersonaje() {
-		return personaje;
-	}
-
-
-
-	public void setPersonaje(MainCharacter personaje) {
-		this.personaje = personaje;
-	}
-
-
-
-	public Actions getActions() {
-		return actions;
-	}
-
-
-
-	public void setActions(Actions actions) {
-		this.actions = actions;
-	}
-
-
-
-	public ArrayList<Actions> getIndex() {
+	public int getIndex() {
 		return index;
 	}
 
 
 
-	public void setIndex(ArrayList<Actions> index) {
+	public void setIndex(int index) {
 		this.index = index;
+	}
+
+
+
+	public String getName() {
+		return name;
+	}
+
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+
+	public MainCharacter getCharacter() {
+		return character;
+	}
+
+
+
+	public void setCharacter(MainCharacter character) {
+		this.character = character;
+	}
+
+	
+	public ArrayList<Actions> getStory() {
+		return story;
 	}
     
     
     
-    
-}//Fin clase
+}//End

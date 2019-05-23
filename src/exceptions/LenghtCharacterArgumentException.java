@@ -1,6 +1,6 @@
 package exceptions;
 
-public class LenghtCharacterArgumentException extends Exception {
+public class LenghtCharacterArgumentException extends LenghtArgumentException {
 	
 	/**
 	 * This exception is throws when you try to introude more than 4 arguments int the main Character

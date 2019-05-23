@@ -12,16 +12,17 @@ import java.awt.event.MouseEvent;
  * @author SaraPdrui
  * this class represents an argument that is used by one philosopher
  */
-public final class Argument extends JButton{
+public final class Argument{
     
-   private String weapon;//String que recoge el nombre de un argumento, este hombre corresponder√° a un arma
-   private String text;//String que recoge el contenido del argumento
-   private byte strength;
-   private byte timesLost; // 
-   private Type1 type1;//enum que representa una etiqueta de una corriente de pensamiento principal
-   private Type2 type2; // enum que representa una etiqueta de una corriente de pensamiento secundaria
+   private String weapon;//Name of a weapon
+   private String text;//Text of the argument
+   private byte strength;// strength of the argument
+   private int timesLost; // times that the argument has lost
+   private Type1 type1;//represents one argument¥s principal type
+   private Type2 type2; //represents one argument¥s sub-type
    
-   
+/**
+ */
   public enum Type1{
         MATERIALISTA,
         DUALISTA
@@ -38,59 +39,56 @@ public final class Argument extends JButton{
         IDENTIDAD,
         CONDUCTISTA
     };
-
-  
-    /**
-     * Principal constructor de la clase Argumento
-     * @param arma String 
-     * @param text String 
-     * @param corriente1 
-     * @param corriente2 
-     */
-   
-   
    
     /**
-     * Devuelve un enum TipoArgumentoPrincipal
-     * @return type1
+     * Constructor of this Argument class
+     * @param weapon
+     * @param text
+     * @param strength
+     * @param timesLost
+     * @param type1
+     * @param type2
      */
-    public Type1 getType1() {
-        return type1;
-    }
     
     public Argument(String weapon, String text, byte strength, byte timesLost, Type1 type1, Type2 type2) {
 		super();
-		addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				
-			}
-		});
+	
 		this.weapon = weapon;
 		this.text = text;
 		this.strength = strength;
 		this.timesLost = timesLost;
 		this.type1 = type1;
 		this.type2 = type2;
-		
-		
-		//-------------BUTTON COMPONENTS------------------
-		
-		setBackground(new Color(255, 215, 0));
-		setForeground(new Color(0, 0, 0));
-		setFont(new Font("Malgun Gothic", Font.PLAIN, 15));
 	}
+   
+    /**
+     * returns a type1
+     * @return type1
+     */
+    public Type1 getType1() {
+        return type1;
+    }
+    
+   
 
 	/**
      * 
-     * @param type1 
+     * @param sets a type1 
      */
     public void setType1(Type1 type1) {
         this.type1 = type1;
     }
     
     /**
-     * Devuelve un String arma
+     * sets a type2
+     * @param type2 
+     */
+    public void setType2(Type2 type2) {
+        this.type2 = type2;
+    }
+    
+    /**
+     * retuns a tyoe2 
      * @return type2
      */
     public Type2 getType2() {
@@ -98,22 +96,14 @@ public final class Argument extends JButton{
     }
     
     /**
-     * Devuelve un String arma
-     * @param type2 
-     */
-    public void setType2(Type2 type2) {
-        this.type2 = type2;
-    }
-
-    /**
-     * 
-     * @return
+     * retuns a weapon
+     * @return weapon
      */
 	public String getWeapon() {
 		return weapon;
 	}
 	/**
-	 * 
+	 * sets a weapon
 	 * @param weapon
 	 */
 	public void setWeapon(String weapon) {
@@ -121,19 +111,27 @@ public final class Argument extends JButton{
 	}
 
 	/**
-	 * 
-	 * @return
+	 * returns a text
+	 * @return text
 	 */
 	public String getText() {
 		return text;
 	}
 
 	/**
-	 * 
+	 * sets a text
 	 * @param text
 	 */
 	public void setText(String text) {
 		this.text = text;
+	}
+
+	public int getTimesLost() {
+		return timesLost;
+	}
+
+	public void setTimesLost(int timesLost) {
+		this.timesLost = timesLost;
 	}
 
 	/**

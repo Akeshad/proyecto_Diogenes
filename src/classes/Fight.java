@@ -4,10 +4,12 @@ public class Fight extends Actions {
 
 	private Philosopher philosopher; // philosopher 
 
-	
+	public Fight() {
+		super();
+	}
 	
 	public Fight(Philosopher philosopher) {
-		super();
+		this();
 		this.philosopher = philosopher;
 	}
 

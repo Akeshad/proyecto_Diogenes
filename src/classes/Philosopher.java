@@ -18,9 +18,10 @@ import exceptions.NameException;
  * @author SaraPdrui
  */
 public class Philosopher {
-     protected String name; // Philosopher큦 name 
-     protected ArrayList<Argument> arguments = new ArrayList<Argument>();// Philosopher큦 arguments 
-     protected int timesLost;
+     private String name; // Philosopher큦 name 
+     private ArrayList<Argument> arguments = new ArrayList<Argument>();// Philosopher큦 arguments 
+     private int timesLost;
+     private String linkImage;
      
 
 	/**
@@ -72,7 +73,7 @@ public class Philosopher {
 	 * @throws LenghtCharacterArgumentException 
 	 * @throws LenghtArgumentException 
 	 */
-	public void setArguments(ArrayList<Argument> arguments) throws LenghtCharacterArgumentException, LenghtArgumentException {
+	public void setArguments(ArrayList<Argument> arguments) throws LenghtArgumentException {
 		if (arguments.size()<=4) {
 			this.arguments = arguments;
 		}else {
