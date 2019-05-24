@@ -154,6 +154,10 @@ public class Window extends JFrame {
 
 
 	//--------------GETTERS AND SETTERS-------------------
+	/**
+	 *  returns a creditsScreen
+	 * @return creditsScreen
+	 */
 	public CreditsScreen getCreditsScreen() {
 		return creditsScreen;
 	}
@@ -162,6 +166,10 @@ public class Window extends JFrame {
 		this.creditsScreen = creditsScreen;
 	}
 
+	/**
+	 * returns a creditsScreen
+	 * @return
+	 */
 	public MenuScreen getMenuScreen() {
 		return menuScreen;
 	}
@@ -170,6 +178,10 @@ public class Window extends JFrame {
 		this.menuScreen = menuScreen;
 	}
 
+	/**
+	 * returns a creditsScreen
+	 * @return
+	 */
 	public CreationScreen getCreationScreen() {
 		return creationScreen;
 	}
@@ -178,30 +190,54 @@ public class Window extends JFrame {
 		this.creationScreen = creationScreen;
 	}
 
+	/**
+	 * returns a creditsScreen
+	 * @return
+	 */
 	public SequenceScreen getSequenceScreen() {
 		return sequenceScreen;
 	}
 
+	/**
+	 * 
+	 * @param sequenceScreen
+	 */
 	public void setSequenceScreen(SequenceScreen sequenceScreen) {
 		this.sequenceScreen = sequenceScreen;
 	}
 
+	/**
+	 * returns a creditsScreen
+	 * @return
+	 */
 	public FightScreen getFightScreen() {
 		return fightScreen;
 	}
-
+	
+	/**
+	 * 
+	 * @param fightScreen
+	 */
 	public void setFightScreen(FightScreen fightScreen) {
 		this.fightScreen = fightScreen;
 	}
-
+	
+	/**
+	 * returns a creditsScreen
+	 * @return
+	 */
 	public Game getGame() {
 		return game;
 	}
 
+	/**
+	 * 
+	 * @param game
+	 */
 	public void setGame(Game game) {
 		this.game = game;
 	}
 
 
 
-}
+}//End class

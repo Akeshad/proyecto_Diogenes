@@ -26,6 +26,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
@@ -33,14 +36,19 @@ import javax.swing.JTextPane;
 
 
 public class FightScreen extends JPanel{
-	private Window w;
-	private Philosopher philosopher;//
-	private MainCharacter mainCharacter;//
-	private JPanel argumentPanel;
-	private JTextArea editorPane;
-	private Argument philosopherBest;
-    private JTextPane diogenesText;
+	private Window w;//Window of the app
+	private Philosopher philosopher;// A philosopher 
+	private MainCharacter mainCharacter;// A mainCharacter
+	private JPanel argumentPanel; // Panel that will have the arguments of the mainCharacter as buttons
+	private JTextArea editorPane; // Editor pane will have the arguments of the philosopher
+	private Argument philosopherBest; //Philosopher Arguments
+    private JTextPane diogenesText; // represents the arguments that are chosen in a textPane
 
+    
+    /**
+     * Main constructor of the class
+     * @param w
+     */
 	public FightScreen(Window w) {
 		super();
 		setLayout(null);	
@@ -79,7 +87,6 @@ public class FightScreen extends JPanel{
 		this.argumentPanel = new JPanel();
 		argumentPanel.setBounds(0, 620, 1200, 48);
 		add(argumentPanel);		
-		//argumentPanel.setLayout(new GridLayout(1, argumentoLP.size()));
 
 
 
@@ -89,6 +96,10 @@ public class FightScreen extends JPanel{
 		imagenLabel.setBounds(0, 0, 1200, 800);
 		add(imagenLabel);
 	}
+	
+	/**
+	 * Function that will manage the Fight
+	 */
 	
 	public void initArgument() {
 		
@@ -119,6 +130,13 @@ public class FightScreen extends JPanel{
 							} else if (!(philosopherArguments.contains(winner))) {
 								philosopher.setTimesLost(philosopher.getTimesLost() + 1);
 								philosopherBest.setTimesLost(philosopherBest.getTimesLost() + 1);
+								 File archivo = new File("./hasPerdido.txt");
+								 String perdido = "Has perdido";
+							        archivo.createNewFile();
+							        FileWriter writer = new FileWriter(archivo);
+							        writer.write(perdido);
+							        writer.flush();
+							        writer.close();
 							} else {
 								throw new NotFoundArgumentException("Ha habido un error en la batalla");
 							}
@@ -126,19 +144,24 @@ public class FightScreen extends JPanel{
 							ex.printStackTrace();
 						} catch (NotFoundArgumentException e1) {
 							e1.printStackTrace();
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
 						}
 
 						
 					}
 				}
 				
-
+				//---------END OF THE FIGHT---------------------
 				if (philosopher.getTimesLost() >= 5) {
 					
 					editorPane.setText("Hurrita");
 					JOptionPane.showMessageDialog(w, "Hurrita");
 					w.transition();
 				} else if(mainCharacter.getTimesLost() >= 5) {
+					
+					//-------------- EXCHANGE OF ARGUMENTS-------------------
 					for (int i = 0; i < arguments.size(); i++) {
 						Argument argumentLoser = arguments.get(i);
 						if(argumentLoser.getTimesLost() >= 2) {
@@ -157,6 +180,7 @@ public class FightScreen extends JPanel{
 			}
 		};
 
+		//------------------------INTRODUCING BUTTONS-----------------------
 		for (int i = 0; i < arguments.size(); i++) {
 			Argument argument = arguments.get(i);
 
@@ -169,19 +193,39 @@ public class FightScreen extends JPanel{
 
 	}
 	
-	//----------------
+	//----------------GETTERS AND SETTERS----------------------
+	
+	
+	/**
+	 * returns a philosopher
+	 * @return philosopher
+	 */
 	
 	public Philosopher getPhilosopher() {
 		return philosopher;
 	}
+	
+	/**
+	 * sets a philosopher
+	 * @param philosopher
+	 */
 
 	public void setPhilosopher(Philosopher philosopher) {
 		this.philosopher = philosopher;
 	}
 
+	/**
+	 * returns a mainCharacter
+	 * @return mainCharacter
+	 */
 	public MainCharacter getMainCharacter() {
 		return mainCharacter;
 	}
+	
+	/**
+	 * sets a mainCharacter
+	 * @param mainCharacter
+	 */
 
 	public void setMainCharacter(MainCharacter mainCharacter) {
 		this.mainCharacter = mainCharacter;
