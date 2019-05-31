@@ -38,16 +38,23 @@ public class Philosopher {
 		this.setArguments(arguments);
 	}
     
+    
+    public Philosopher() {
+		super();
+		
+	}
+    
+    
     /**
-     * 
-     * @return
+     * Returns a name
+     * @return name
      */
 	public String getName() {
 		return name;
 	}
 	
 	/**
-	 * 
+	 * Sets a philosopher name
 	 * @param name
 	 * @throws NameException 
 	 */
@@ -60,7 +67,7 @@ public class Philosopher {
 	}
 	
 	/**
-	 * 
+	 * returns a philosopher argument
 	 * @return
 	 */
 	public ArrayList<Argument> getArguments() {
@@ -68,7 +75,7 @@ public class Philosopher {
 	}
 	
 	/**
-	 * 
+	 * sets a philosopher argument
 	 * @param arguments
 	 * @throws LenghtCharacterArgumentException 
 	 * @throws LenghtArgumentException 
@@ -82,15 +89,27 @@ public class Philosopher {
 
 	}
 	
+	/**
+	 *  returns how many times has a philosopher lost
+	 * @return timesLost
+	 */
 	   public int getTimesLost() {
 			return timesLost;
 		}
 
+	   /**
+	    * sets how many times has a philosopher lost
+	    * @param timesLost
+	    */
 		public void setTimesLost(int timesLost) {
 			this.timesLost = timesLost;
 		}
 	
 		
+		/**
+		 * Function that returns a random argument
+		 * @return Argument
+		 */
 		public  Argument getRdArgument() {
 			Random rd = new Random();
 			ArrayList<Argument> argumentsLs = this.getArguments();
@@ -102,9 +121,6 @@ public class Philosopher {
 	 * This function calculate the best argument for a fight
 	 * @param Argument
 	 */
-	
-		
-		
 		public Argument getBestArgument() {
 		Argument max = null;
 		for (int i = 0; i < arguments.size(); i++) {

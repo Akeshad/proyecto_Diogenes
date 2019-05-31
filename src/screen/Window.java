@@ -5,6 +5,7 @@ import javax.swing.*;
 
 import classes.Actions;
 import classes.Argument;
+import classes.ConnectionBD;
 import classes.Fight;
 import classes.Game;
 import classes.MainCharacter;
@@ -26,16 +27,20 @@ public class Window extends JFrame {
 	private MenuScreen menuScreen;//Menu JPanel 
 	private SequenceScreen sequenceScreen;///Game's sequence JPanel 
 	private FightScreen fightScreen;//Fight event JPanel 
-	private CreationScreen creationScreen;
-	private Game game;
+	private Game game;//Game 
+	private ConnectionBD conn;
 
+	
+	/**
+	 * Principal constructor of this class
+	 */
 	public Window() {
 		super();
 		//mainCharacter = new MainCharacter();
 		menuScreen = new MenuScreen(this);
-		creationScreen = new CreationScreen(this);
 		fightScreen = new FightScreen(this);
 		sequenceScreen = new SequenceScreen(this);
+		this.conn = new ConnectionBD();
 
 
 		//---------------- SEQUENCE OBJECT ------------------
@@ -68,6 +73,7 @@ public class Window extends JFrame {
 		MyMenuItem saveMenu = new MyMenuItem("Guardar Partida");
 		saveMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				conn.saveGame(game);
 			}
 		});
 		saveMenu.setIcon(new ImageIcon(Window.class.getResource("/javax/swing/plaf/metal/icons/ocean/floppy.gif")));
@@ -98,17 +104,19 @@ public class Window extends JFrame {
 
 
 	//--------------TRANSITION CONFIGURATION-------------------
-
+	/**
+	 * 
+	 */
 	public void transition() {		
-		
+
 		int index = this.game.getIndex();
-		
-		
+		index++;
+		game.setIndex(index);
+
 		if(index >= this.game.getStory().size()) {
 			System.exit(EXIT_ON_CLOSE);			
 		}else {
 			Actions action = this.game.getStory().get(index);
-			game.setIndex(index + 1);
 			if(action instanceof Sequence ) {
 				Sequence seq = (Sequence) action;
 				loadSequenceScreen(seq);
@@ -122,6 +130,10 @@ public class Window extends JFrame {
 
 	//--------------SEQUENCESCREEN CONFIGURATION-------------------
 
+	/**
+	 * Function that load a Sequence Screen
+	 * @param sequence
+	 */
 	public void loadSequenceScreen(Sequence sequence) {
 
 		if(this.menuScreen != null) {
@@ -138,9 +150,21 @@ public class Window extends JFrame {
 		this.setContentPane(this.sequenceScreen);
 
 	}
+	
+	
+	/**
+	 * Function that load a Fight Screen
+	 * @param fight
+	 */
 
 	public void loadFightScreen(Fight fight) {
+		if(this.menuScreen != null) {
+			this.menuScreen.setVisible(false);
 
+		} else if(this.sequenceScreen != null ) {
+			this.sequenceScreen.setVisible(false);
+		}
+		
 		this.fightScreen.setPhilosopher(fight.getPhilosopher());
 		this.fightScreen.setMainCharacter(game.getCharacter());
 		this.fightScreen.initArgument();
@@ -178,20 +202,10 @@ public class Window extends JFrame {
 		this.menuScreen = menuScreen;
 	}
 
-	/**
-	 * returns a creditsScreen
-	 * @return
-	 */
-	public CreationScreen getCreationScreen() {
-		return creationScreen;
-	}
 
-	public void setCreationScreen(CreationScreen creationScreen) {
-		this.creationScreen = creationScreen;
-	}
 
 	/**
-	 * returns a creditsScreen
+	 * returns a SequenceScreen
 	 * @return
 	 */
 	public SequenceScreen getSequenceScreen() {
@@ -207,7 +221,7 @@ public class Window extends JFrame {
 	}
 
 	/**
-	 * returns a creditsScreen
+	 * returns a fightScreen
 	 * @return
 	 */
 	public FightScreen getFightScreen() {
@@ -223,7 +237,7 @@ public class Window extends JFrame {
 	}
 	
 	/**
-	 * returns a creditsScreen
+	 * returns a game
 	 * @return
 	 */
 	public Game getGame() {

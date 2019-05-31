@@ -39,6 +39,11 @@ public final class Argument{
         IDENTIDAD,
         CONDUCTISTA
     };
+    
+    
+    public Argument() {
+    	
+    }
    
     /**
      * Constructor of this Argument class
@@ -51,8 +56,6 @@ public final class Argument{
      */
     
     public Argument(String weapon, String text, byte strength, byte timesLost, Type1 type1, Type2 type2) {
-		super();
-	
 		this.weapon = weapon;
 		this.text = text;
 		this.strength = strength;

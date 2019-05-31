@@ -13,6 +13,10 @@ import java.awt.*;
 
 //sound + file opening
 import java.io.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import javax.sound.sampled.*;
@@ -24,6 +28,7 @@ import classes.Philosopher;
 import classes.Sequence;
 import classes.Argument.Type1;
 import classes.Argument.Type2;
+import classes.ConnectionBD;
 import classes.Fight;
 import classes.Game;
 import components.ButtonsMenu;
@@ -43,10 +48,13 @@ public class MenuScreen extends JPanel{
 
 	private Window w;//Window 
 	private Game game; // Game
+	private ConnectionBD conn; //Game connection
 
 	public MenuScreen(Window w) {
 		
 		
+		
+		this.conn = new ConnectionBD();
 		//--------------JBUTTONS CONFIGURATION-------------------
 		ButtonsMenu newGame = new ButtonsMenu("Nueva Partida");
 		
@@ -57,6 +65,8 @@ public class MenuScreen extends JPanel{
 				Philosopher descartes = null;
 				MainCharacter diogenes = null;
 				game = new Game();
+				
+				
 				
 				
 				
@@ -107,6 +117,7 @@ public class MenuScreen extends JPanel{
 					
 					diogenes = new MainCharacter("Diogenes", argumentoLP);
 					game.setCharacter(diogenes);
+					
 
 					Sequence sequence = new Sequence();
 					sequence.getMessages().add(new Message("C:\\GIT\\proyecto_Diogenes\\img\\fondo1.png", "Creo que ya ha bebido suficiente, es hora de que vayamos a descansar",1000));
@@ -119,6 +130,10 @@ public class MenuScreen extends JPanel{
 					
 					sequence = new Sequence();
 					game.getStory().add(sequence);
+					
+					
+					
+					conn.saveGame(game);
 					
 				} catch (LenghtCharacterArgumentException e) {
 
@@ -140,6 +155,15 @@ public class MenuScreen extends JPanel{
 		
 		
 		ButtonsMenu loadGame = new ButtonsMenu("Cargar Partida");
+		loadGame.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				Game game = conn.loadGame();
+				game.setIndex(game.getIndex() - 1);
+				w.setGame(game);
+				w.transition();
+			}
+		});
 		loadGame.setBounds(480, 581, 180, 50);
 		loadGame.setHorizontalTextPosition(SwingConstants.CENTER);
 		add(loadGame);
@@ -157,4 +181,8 @@ public class MenuScreen extends JPanel{
 		setVisible(true);
 
 	}
+	
+	
+
+
 }

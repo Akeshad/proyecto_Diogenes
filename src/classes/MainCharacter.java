@@ -19,10 +19,26 @@ import exceptions.TypeException;
 public class MainCharacter extends Philosopher {
 
 
+	
+	public MainCharacter() {
+		super();
+	}
+	/**
+	 * Principal constructor of this class
+	 * @param name
+	 * @param arguments
+	 * @throws LenghtCharacterArgumentException
+	 * @throws NameException
+	 * @throws LenghtArgumentException
+	 */
 	public MainCharacter(String name, ArrayList<Argument> arguments) throws LenghtCharacterArgumentException, NameException, LenghtArgumentException {
 		super(name, arguments);
 	}
 	
+	
+	/**
+	 * Sets an argument
+	 */
 	@Override
 	public void setArguments(ArrayList<Argument> arguments) throws LenghtArgumentException, LenghtCharacterArgumentException {
 		if (arguments.size()<=3) {
