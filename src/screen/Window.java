@@ -82,6 +82,7 @@ public class Window extends JFrame {
 		MyMenuItem backMenu = new MyMenuItem("Men\u00FA Principal");
 		backMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				loadMenuScreen();
 			}
 		});;
 		backMenu.setIcon(new ImageIcon(Window.class.getResource("/javax/swing/plaf/metal/icons/ocean/homeFolder.gif")));
@@ -173,6 +174,18 @@ public class Window extends JFrame {
 		this.setContentPane(this.fightScreen);
 
 
+	}
+	
+	public void loadMenuScreen() {
+		if(this.fightScreen != null) {
+			this.fightScreen.setVisible(false);
+
+		} else if(this.sequenceScreen != null ) {
+			this.sequenceScreen.setVisible(false);
+		}
+		
+		this.menuScreen.setVisible(true);
+		this.setContentPane(this.menuScreen);
 	}
 
 

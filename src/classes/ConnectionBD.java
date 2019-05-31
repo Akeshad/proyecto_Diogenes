@@ -17,6 +17,10 @@ public class ConnectionBD {
 	
 	private Connection conn; 
 	
+	
+	/**
+	 * Constructor of this class
+	 */
 	public ConnectionBD() {
 		
 		this.conn = null;
@@ -32,6 +36,10 @@ public class ConnectionBD {
 	}
 	
 
+	/**
+	 * Function that saves a game
+	 * @param game
+	 */
 	public void saveGame(Game game) {
 		try {
 			
@@ -59,6 +67,13 @@ public class ConnectionBD {
 
 	}
 	
+	
+	/**
+	 * Function that inserts a philosopher in the DB
+	 * @param philo
+	 * @throws SQLException
+	 */
+	
 	private void insertPhilosopher(Philosopher philo) throws SQLException {
 
 		Statement registerStatement = conn.createStatement();
@@ -75,6 +90,12 @@ public class ConnectionBD {
 	
 	}
 	
+	/**Function that inserts an argument in the DB
+	 * 
+	 * @param arg
+	 * @param phi
+	 * @throws SQLException
+	 */
 	private void insertArgument(Argument arg, Philosopher phi) throws SQLException {
 
 		Statement registerStatement = conn.createStatement();
@@ -90,6 +111,12 @@ public class ConnectionBD {
 	}
 	
 	
+	/**
+	 * Function that inserts a game in the DB
+	 * @param gm
+	 * @param phi
+	 * @throws SQLException
+	 */
 	private void insertGame(Game gm, Philosopher phi) throws SQLException {
 		
 		String command = 
@@ -101,6 +128,12 @@ public class ConnectionBD {
 		registerStatement.executeUpdate(command);
 	}
 	
+	/**
+	 * Function that inserts an actions in the DB
+	 * @param action
+	 * @param index
+	 * @throws SQLException
+	 */
 	private void insertActions(Actions action, int index) throws SQLException {
 		Statement registerStatement = conn.createStatement();
 		Boolean bool = true;
@@ -124,26 +157,30 @@ public class ConnectionBD {
 			registerStatement.executeUpdate(
 					"insert into Actions (tipo,Philosopher_name, action_index) values('" + (bool ? 1 : 0) + "',"
 							+ "'" +fig.getPhilosopher().getName() + "',"
-									+ "'" +index + "')");
-			
-			
-			
-		}
-		
-		
+									+ "'" +index + "')");			
+		}		
 	}
 	
+	/**
+	 * Function that inserts a message in the DB	
+	 * @param action
+	 * @param ms
+	 * @throws SQLException
+	 */
 	private void insertMessage(int action, Message ms) throws SQLException {
 		Statement registerStatement = conn.createStatement();
 	
 		registerStatement.executeUpdate(
 				"insert into Message (link,txt, Actions_action_index) values('" + ms.getLink() + "',"
 						+ "'" + ms.getLink() + "',"
-								+ "'" +action+ "')");
-		
-		
+								+ "'" +action+ "')");	
 	}
 	
+	
+	/**
+	 * Function that returns a game witch is going to be load
+	 * @return game
+	 */
 	public Game loadGame() {
 		Game game = new Game();
 		
@@ -177,7 +214,16 @@ public class ConnectionBD {
 		
 		return game;
 	}
-
+	
+	
+	/**
+	 * Function that gets a MainCharacter from the DB
+	 * @param name
+	 * @return
+	 * @throws SQLException
+	 * @throws LenghtArgumentException
+	 * @throws NameException
+	 */
 	public MainCharacter getMainCharacterQuery(String name) throws SQLException, LenghtArgumentException, NameException {
 		
 		MainCharacter ph = new MainCharacter();
@@ -193,6 +239,15 @@ public class ConnectionBD {
 
 		return ph;
 	}
+	
+	/**
+	 * Function that gets a Philosopher from the DB
+	 * @param name
+	 * @return
+	 * @throws SQLException
+	 * @throws LenghtArgumentException
+	 * @throws NameException
+	 */
 	public Philosopher getPhilosopherQuery(String name) throws SQLException, LenghtArgumentException, NameException {
 		
 		Philosopher ph = new Philosopher();
@@ -209,6 +264,13 @@ public class ConnectionBD {
 		return ph;
 	}
 	
+	
+	/**
+	 * Function that gets an ArrayList if Arguments from the DB
+	 * @param name
+	 * @return
+	 * @throws SQLException
+	 */
 	public ArrayList<Argument> getArgument(String name) throws SQLException {
 		ArrayList<Argument> list = new ArrayList<Argument>();
 		
@@ -238,6 +300,14 @@ public class ConnectionBD {
 		return list;
 	}
 	
+	
+	/**
+	 * Function that gets an Array of Actions from the DB
+	 * @return
+	 * @throws SQLException
+	 * @throws LenghtArgumentException
+	 * @throws NameException
+	 */
 	public ArrayList<Actions> loadStory() throws SQLException, LenghtArgumentException, NameException {
 		
 		ArrayList<Actions> list = new ArrayList<Actions>();
@@ -269,6 +339,12 @@ public class ConnectionBD {
 		return list;
 	}
 	
+	/**
+	 * Function that gets an Array of Messages from the DB
+	 * @param index
+	 * @return
+	 * @throws SQLException
+	 */
 	public ArrayList <Message> messageQuery(int index) throws SQLException{
 		
 		ArrayList <Message> mess = new ArrayList<Message>();
@@ -291,6 +367,12 @@ public class ConnectionBD {
 		
 		return mess;
 	}
+	
+	/**
+	 * Function that delete a table
+	 * @param tableName
+	 * @throws SQLException
+	 */
 	
 	private void deleteTable(String tableName) throws SQLException {
 

@@ -42,6 +42,7 @@ public class SequenceScreen extends JPanel{
 		this.w = w;
 		setLayout(null);
 		
+		//----------------- CREATE NEXT BUTTON---------------
 		JButton nextButton = new JButton("Saltar Intro");
 		nextButton.addMouseListener(new MouseAdapter() {
 			@Override
@@ -54,15 +55,17 @@ public class SequenceScreen extends JPanel{
 		nextButton.setBounds(1100, 625, 102, 50);
 		add(nextButton);
 		
+		//--------------------------CREATE TEXTBOX-------------------------------
 		this.textBox = new JTextPane();
-		textBox.setFont(new Font("Malgun Gothic", Font.PLAIN, 24));
+		textBox.setFont(new Font("Malgun Gothic", Font.PLAIN, 20));
 		textBox.setText("Un día cualquiera en la antigua Hélade...");
 		textBox.setBackground(new Color(255, 204, 102));
 		textBox.setBounds(0, 581, 1100, 94);
 		add(textBox);
 		
+		//--------------------------- CREATE BACKGROUNG IMAGE
 		this.backgroundImage = new JLabel("");
-		backgroundImage.setIcon(new ImageIcon("C:\\GIT\\proyecto_Diogenes\\img\\fondo1.png"));
+		backgroundImage.setIcon(new ImageIcon("C:\\GIT\\proyecto_Diogenes\\img\\tr2.jpg"));
 		backgroundImage.setBounds(0, 0, 1200, 700);
 		add(backgroundImage);		
 		

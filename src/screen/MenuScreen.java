@@ -65,10 +65,7 @@ public class MenuScreen extends JPanel{
 				Philosopher descartes = null;
 				MainCharacter diogenes = null;
 				game = new Game();
-				
-				
-				
-				
+								
 				
 				//------------ADD PHILOSOPHER ARGUMENTS-----------------
 				Argument argumento0 = new Argument("Escopeta", "la verdad no se encuentra en la Naturaleza", (byte)1,(byte)0,
@@ -120,16 +117,35 @@ public class MenuScreen extends JPanel{
 					
 
 					Sequence sequence = new Sequence();
-					sequence.getMessages().add(new Message("C:\\GIT\\proyecto_Diogenes\\img\\fondo1.png", "Creo que ya ha bebido suficiente, es hora de que vayamos a descansar",1000));
-					sequence.getMessages().add(new Message("C:\\GIT\\proyecto_Diogenes\\img\\fondo1.png", "Nooooooo",1000));
+					sequence.getMessages().add(new Message("./img/tr1.jpg", "DIÓGENES --\nQue te he dicho que Platón es un pamplinoso... ¡Hip!",5000));
+					sequence.getMessages().add(new Message("./img/tr1.jpg", "DISCÍPULO --\nCreo que ya ha bebido suficiente, es hora de que vayamos a descansar",10000));
+					sequence.getMessages().add(new Message("./img/tr1.jpg", "DIÓGENES --\nNo me digas lo que tengo que hacer... ¡Hip!",15000));
+					sequence.getMessages().add(new Message("./img/tr1.jpg", "DIOGENES --\nTrae más vino, que mañana vamos a darle pal pelo en el Ágora a ese idealista fantasmón",20000));
+					sequence.getMessages().add(new Message("./img/tr4.jpg", "Al día siguiente...",25000));
+					sequence.getMessages().add(new Message("./img/tr5.jpg", "DIOGENES --\n...",30000));
+					sequence.getMessages().add(new Message("./img/tr6.jpg", "DIOGENES --\n¿Dónde demonios estoy?",33000));
+					sequence.getMessages().add(new Message("./img/tr5.jpg", "DIOGENES --\nParece que ayer bebí demasiado, maldito Antinoo, no volverá a engatusarme con ese vino espartano",36000));
+					sequence.getMessages().add(new Message("./img/tr7.jpg", "Tres horas más tarde",39500));
+					sequence.getMessages().add(new Message("./img/tr7.jpg", "DIOGENES --\nMaldita sea, ¿pero que llevaba ese vino?",42000));
+					sequence.getMessages().add(new Message("./img/tr8.jpg", "DIOGENES --\nParece que hay alguien andando en el camino, a ver si sabe dónde está la ciudad",46000));
+					sequence.getMessages().add(new Message("./img/tr8.jpg", "DIÓGENES --\n¡Buenos días! ¿Sabes por dónde se va a Atenas? Llevo perdido horas y este maldito bosque cada vez es más grande",51000));
+					sequence.getMessages().add(new Message("./img/tr9.jpg", "DESCARTES --\nBuegnos días, buen hombre. No se donde está, de hecho llevo horas pegdido sin sabeg dónde estoy",55000));
+					sequence.getMessages().add(new Message("./img/tr9.jpg", "Di- Vaya, entonces los dos estamos jodidos. Lo peor es que tengo bastante hambre, si al menos encontrásemos comida...",58000));
+					sequence.getMessages().add(new Message("./img/tr9.jpg", "De- Monsieur, yo tengo pan y queso si quieres podemos sentarnos y de paso te cuento los pensamientos que he estado desarrollando",62000));
+					sequence.getMessages().add(new Message("./img/tr9.jpg", "De- He escgito un libgo llamado La Métaphysique, y me muego de ganas pog compagtig mis pensamientos",66000));
+					sequence.getMessages().add(new Message("./img/tr9.jpg", "Di- ¡Parece que este día va a ser bueno después de todo, conversermos mi buen amigo!",70000));
+					sequence.getMessages().add(new Message("./img/tr10.png", " ",73000));
+					sequence.getMessages().add(new Message("./img/tr11.png", " ",76000));
+					sequence.getMessages().add(new Message("./img/tr12.png", " ",80000));
+					sequence.getMessages().add(new Message("./img/tr13.jpg", "¡CONOCEGÁS MI IGAAAAA! ",84000));
 					game.getStory().add(sequence);
 
 					descartes = new Philosopher("Decartes", argumentoL);
 					Fight fight = new Fight(descartes);
 					game.getStory().add(fight);
 					
-					sequence = new Sequence();
-					game.getStory().add(sequence);
+					//sequence = new Sequence();
+					//game.getStory().add(sequence);
 					
 					
 					
