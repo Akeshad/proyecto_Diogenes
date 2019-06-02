@@ -147,6 +147,9 @@ public class FightScreen extends JPanel{
 					if (e.getActionCommand() == characterArgument.getWeapon()) {
 						//descartes.repaint();
 						//descartes.setIcon(new ImageIcon(philosopher.getLinkImage()));
+						/**
+						 * No he conseguido hacer el intercambio de imagenes, no se por qué no salen
+						 */
 
 						diogenesText.setText(characterArgument.getText());
 						timesLost.setText(mainCharacter.getTimesLost() + " luchas perdidas de Diogenes");
@@ -162,22 +165,13 @@ public class FightScreen extends JPanel{
 							} else if (!(philosopherArguments.contains(winner))) {
 								philosopher.setTimesLost(philosopher.getTimesLost() + 1);
 								philosopherBest.setTimesLost(philosopherBest.getTimesLost() + 1);
-								File archivo = new File("./hasPerdido.txt");
-								String perdido = "Has perdido";
-								archivo.createNewFile();
-								FileWriter writer = new FileWriter(archivo);
-								writer.write(perdido);
-								writer.flush();
-								writer.close();
+								
 							} else {
 								throw new NotFoundArgumentException("Ha habido un error en la batalla");
 							}
 						} catch (TypeException ex) {
 							ex.printStackTrace();
 						} catch (NotFoundArgumentException e1) {
-							e1.printStackTrace();
-						} catch (IOException e1) {
-
 							e1.printStackTrace();
 						}
 

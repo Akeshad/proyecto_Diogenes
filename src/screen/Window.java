@@ -18,6 +18,9 @@ import java.awt.Color;
 import components.Background;
 import components.MyMenuItem;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 
 
@@ -70,10 +73,28 @@ public class Window extends JFrame {
 
 
 		//--------------JMENUITEM CONFIGURATION-------------------
+		
+		
+					//-----------SAVING GAME-------------------
 		MyMenuItem saveMenu = new MyMenuItem("Guardar Partida");
 		saveMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				conn.saveGame(game);
+				
+						//---------------WE CREATE A FILE WRITER OF THE SAVED GAME---------
+				File file = new File("./partidaGuardada.txt");
+				String saved = "Partida guardada";
+				
+				try {
+					file.createNewFile();
+					FileWriter writer = new FileWriter(file);
+					writer.write(saved);
+					writer.flush();
+					writer.close();
+				} catch (IOException e) {
+					
+					e.printStackTrace();
+				}
 			}
 		});
 		saveMenu.setIcon(new ImageIcon(Window.class.getResource("/javax/swing/plaf/metal/icons/ocean/floppy.gif")));
@@ -106,7 +127,7 @@ public class Window extends JFrame {
 
 	//--------------TRANSITION CONFIGURATION-------------------
 	/**
-	 * 
+	 * This function does a transitions of the screens
 	 */
 	public void transition() {		
 
@@ -157,7 +178,6 @@ public class Window extends JFrame {
 	 * Function that load a Fight Screen
 	 * @param fight
 	 */
-
 	public void loadFightScreen(Fight fight) {
 		if(this.menuScreen != null) {
 			this.menuScreen.setVisible(false);
@@ -172,10 +192,11 @@ public class Window extends JFrame {
 		this.sequenceScreen.setVisible(false);
 		this.fightScreen.setVisible(true);
 		this.setContentPane(this.fightScreen);
-
-
 	}
 	
+	/**
+	 * This function loads a menu Screen
+	 */
 	public void loadMenuScreen() {
 		if(this.fightScreen != null) {
 			this.fightScreen.setVisible(false);
