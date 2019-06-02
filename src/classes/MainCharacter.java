@@ -31,8 +31,8 @@ public class MainCharacter extends Philosopher {
 	 * @throws NameException
 	 * @throws LenghtArgumentException
 	 */
-	public MainCharacter(String name, ArrayList<Argument> arguments) throws LenghtCharacterArgumentException, NameException, LenghtArgumentException {
-		super(name, arguments);
+	public MainCharacter(String name, ArrayList<Argument> arguments, String linkImage) throws LenghtCharacterArgumentException, NameException, LenghtArgumentException {
+		super(name, arguments,linkImage);
 	}
 	
 	

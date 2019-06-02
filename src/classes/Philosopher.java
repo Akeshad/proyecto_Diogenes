@@ -32,14 +32,24 @@ public class Philosopher {
      * @throws NameException 
      * @throws LenghtArgumentException 
      */
-    public Philosopher(String name, ArrayList<Argument> arguments) throws LenghtCharacterArgumentException, NameException, LenghtArgumentException {
+    public Philosopher(String name, ArrayList<Argument> arguments, String linkImage) throws LenghtCharacterArgumentException, NameException, LenghtArgumentException {
 		super();
 		this.setName(name);
 		this.setArguments(arguments);
 	}
     
     
-    public Philosopher() {
+    public String getLinkImage() {
+		return linkImage;
+	}
+
+
+	public void setLinkImage(String linkImage) {
+		this.linkImage = linkImage;
+	}
+
+
+	public Philosopher() {
 		super();
 		
 	}

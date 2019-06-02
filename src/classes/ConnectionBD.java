@@ -380,6 +380,18 @@ public class ConnectionBD {
 		deleteStatement.executeUpdate("delete from " + tableName);
 		
 	}
+	
+	/**
+	 * This function delete the row times lost
+	 * @throws SQLException
+	 */
+	
+	public void deleteTimesLost() throws SQLException {
+		
+		Statement deleteStatement = conn.createStatement();
+		deleteStatement.executeUpdate("delete from philosopher where timesLost >0;");
+		
+	}
 }
 
 

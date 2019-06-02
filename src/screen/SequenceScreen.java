@@ -65,7 +65,7 @@ public class SequenceScreen extends JPanel{
 		
 		//--------------------------- CREATE BACKGROUNG IMAGE
 		this.backgroundImage = new JLabel("");
-		backgroundImage.setIcon(new ImageIcon("C:\\GIT\\proyecto_Diogenes\\img\\tr2.jpg"));
+		backgroundImage.setIcon(new ImageIcon(".\\img\\tr2.jpg"));
 		backgroundImage.setBounds(0, 0, 1200, 700);
 		add(backgroundImage);		
 		

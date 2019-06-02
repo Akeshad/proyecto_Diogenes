@@ -129,24 +129,31 @@ public final class Argument{
 		this.text = text;
 	}
 
+	/**
+	 * gets how many times has lost an argument
+	 * @return timesLost
+	 */
 	public int getTimesLost() {
 		return timesLost;
 	}
-
+	/**
+	 * sets how many times has lost an argument
+	 * @param timesLost
+	 */
 	public void setTimesLost(int timesLost) {
 		this.timesLost = timesLost;
 	}
 
 	/**
-	 * 
-	 * @return
+	 * gets the strength of an argument
+	 * @return strength
 	 */
 	public byte getStrength() {
 		return strength;
 	}
 
 	/**
-	 * 
+	 * sets the strength of an argument
 	 * @param strength
 	 */
 	public void setStrength(byte strength) {

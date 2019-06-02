@@ -19,9 +19,5 @@ public class ButtonsMenu extends JButton {
 		this.setForeground(new Color(0, 0, 0));
 		this.setFont(new Font("Malgun Gothic", Font.PLAIN, 22));
 		this.setBackground(new Color(255, 215, 0));
-		this.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
 	}
 }
