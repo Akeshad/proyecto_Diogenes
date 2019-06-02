@@ -4,18 +4,12 @@ package screen;
 import javax.swing.*;
 
 import classes.Actions;
-import classes.Argument;
 import classes.ConnectionBD;
 import classes.Fight;
 import classes.Game;
-import classes.MainCharacter;
-import classes.Philosopher;
 import classes.Sequence;
-
 import java.awt.Font;
 import java.awt.Color;
-
-import components.Background;
 import components.MyMenuItem;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -39,16 +33,10 @@ public class Window extends JFrame {
 	 */
 	public Window() {
 		super();
-		//mainCharacter = new MainCharacter();
 		menuScreen = new MenuScreen(this);
 		fightScreen = new FightScreen(this);
 		sequenceScreen = new SequenceScreen(this);
 		this.conn = new ConnectionBD();
-
-
-		//---------------- SEQUENCE OBJECT ------------------
-
-
 
 		//--------------WINDOWS CONFIGURATION-------------------
 		setTitle("Bizarre Adventures ");//
@@ -73,15 +61,14 @@ public class Window extends JFrame {
 
 
 		//--------------JMENUITEM CONFIGURATION-------------------
-		
-		
-					//-----------SAVING GAME-------------------
+		//------------------------------------------------------
+						//------SAVING GAME-------
 		MyMenuItem saveMenu = new MyMenuItem("Guardar Partida");
 		saveMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				conn.saveGame(game);
-				
-						//---------------WE CREATE A FILE WRITER OF THE SAVED GAME---------
+		 
+					//---CREATE A FILE WRITER OF THE SAVED GAME---
 				File file = new File("./partidaGuardada.txt");
 				String saved = "Partida guardada";
 				

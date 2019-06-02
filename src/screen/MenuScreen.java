@@ -1,26 +1,16 @@
 
 package screen;
 
-
-import java.awt.event.ActionListener;
-
-import java.awt.event.ActionEvent;
-
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.DataLine;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
-import java.awt.*;
-
-
-
-//sound + file opening
 import java.io.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
-
-import javax.sound.sampled.*;
-
 import classes.Argument;
 import classes.MainCharacter;
 import classes.Message;
@@ -35,8 +25,6 @@ import components.ButtonsMenu;
 import exceptions.LenghtArgumentException;
 import exceptions.LenghtCharacterArgumentException;
 import exceptions.NameException;
-
-import javax.swing.border.MatteBorder;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -48,25 +36,24 @@ public class MenuScreen extends JPanel{
 
 	private Game game; // Game
 	private ConnectionBD conn; //Game connection
+	public static final File gameMusic = new File("./audio/SolveThePuzzle.wav");//This file contains the music of the game
 
 	public MenuScreen(Window w) {
-		
-		
-		
+		 soundON();
 		this.conn = new ConnectionBD();
 		//--------------JBUTTONS CONFIGURATION-------------------
 		ButtonsMenu newGame = new ButtonsMenu("Nueva Partida");
-		
+
 		newGame.addMouseListener(new MouseAdapter() {
-			
+
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				Philosopher descartes = null;
 				MainCharacter diogenes = null;
 				Philosopher skinner = null;
 				game = new Game();
-								
-				
+
+
 				//------------ADD PHILOSOPHER DESCARTES ARGUMENTS-----------------
 				Argument argumentoD0 = new Argument("Escopeta", "la verdad no se encuentra en la Naturaleza", (byte)1,(byte)0,
 						Type1.DUALISTA, Type2.MECANICISTA);
@@ -80,9 +67,7 @@ public class MenuScreen extends JPanel{
 
 				Argument argumentoD4 = new Argument("Tanque del Dualismo", "Dios todo lo puede", (byte)7,(byte)0,
 						Type1.DUALISTA, Type2.MECANICISTA);
-				Argument argumentoD5 = new Argument("Subfusil evidente", "No debemos admitir jamás como verdadera cosa\r\n" + 
-						"alguna sin saber con evidencia que lo era…”", (byte)6,(byte)0,
-						Type1.DUALISTA, Type2.MECANICISTA);
+			
 
 				//------------ADD PHILOSOPHER DESCARTES ARRAYLIST ARGUMENTS-----------------
 				ArrayList<Argument> argumentoL = new ArrayList<Argument>();
@@ -90,8 +75,8 @@ public class MenuScreen extends JPanel{
 				argumentoL.add(argumentoD1);
 				argumentoL.add(argumentoD2);
 				argumentoL.add(argumentoD4);
-		
-				
+
+
 				//------------ADD PHILOSOPHER SKYNNER ARGUMENTS-----------------
 				Argument argumentoS0 = new Argument("Radio asesina", "Todo aquello que necesitamos conocer está en el exterior", (byte)2,(byte)0,
 						Type1.MATERIALISTA, Type2.CONDUCTISTA);
@@ -105,11 +90,7 @@ public class MenuScreen extends JPanel{
 
 				Argument argumentoS4 = new Argument("Subfusil desestimador", "Los perror de Pablov son la clave, tronco", (byte)7,(byte)0,
 						Type1.MATERIALISTA, Type2.CONDUCTISTA);
-				Argument argumentoS5 = new Argument("Navaja telonera", "No debemos admitir jamás como verdadera cosa\r\n" + 
-						"alguna sin saber con evidencia que lo era…”", (byte)6,(byte)0,
-						Type1.MATERIALISTA, Type2.CONDUCTISTA);
-				
-				
+
 
 				//------------ADD PHILOSOPHER SKYNNER ARRAYLIST ARGUMENTS-----------------
 				ArrayList<Argument> argumentoSL = new ArrayList<Argument>();
@@ -117,14 +98,14 @@ public class MenuScreen extends JPanel{
 				argumentoSL.add(argumentoS1);
 				argumentoSL.add(argumentoS2);
 				argumentoSL.add(argumentoS4);
-			
+
 
 				//------------ADD MAIN CHARACTER ARGUMENTS-----------------
 				Argument argumentoP0 = new Argument("Espada", "La naturaleza es, en primer lugar, el conjunto o totalidad de los seres del \n" + 
 						"universo, en ella está la verdad", (byte)1,(byte)0,
 						Type1.DUALISTA, Type2.MONISTA);
 
-				Argument argumentoP2 = new Argument("Cabezaso Dividno", ".El universo es un todo ordenado o cosmos, los hombres pueden leer sus leyes, basta con observar la naturaleza", (byte)3,(byte)0,
+				Argument argumentoP2 = new Argument("Cabezaso Divino", ".El universo es un todo ordenado o cosmos, los hombres pueden leer sus leyes, basta con observar la naturaleza", (byte)3,(byte)0,
 						Type1.DUALISTA, Type2.MONISTA);
 
 				Argument argumentoP3 = new Argument("Calcetín sucio", "Te voy a matar", (byte)3,(byte)0,
@@ -138,11 +119,11 @@ public class MenuScreen extends JPanel{
 
 				//------------ADD  PHILOSOPHER AND MAIN CHARACTER-----------------
 				try {
-					
-					
+
+
 					diogenes = new MainCharacter("Diogenes", argumentoLP, "./img/diogenes.png");
 					game.setCharacter(diogenes);
-					
+
 
 					Sequence sequence = new Sequence();
 					sequence.getMessages().add(new Message("./img/tr1.jpg", "DIÓGENES --\nQue te he dicho que Platón es un pamplinoso... ¡Hip!",5000));
@@ -171,9 +152,11 @@ public class MenuScreen extends JPanel{
 					descartes = new Philosopher("Descartes", argumentoL, "./img/descartes.png");
 					Fight fight = new Fight(descartes);
 					game.getStory().add(fight);
-					
-					Sequence sequence2 = new Sequence();
-					
+
+					Sequence sequence2 = new Sequence();//This second sequence does not work, because of
+					// this I did not created more sequence. The problem is that this sequence is mixed
+					//with the firts one. 
+
 					sequence2.getMessages().add(new Message(" ", "DIOGENES --\n¿Qué acaba de ocurrir? Me siento un poco raro, algo ha cambiado en mi... ",5000));
 					sequence2.getMessages().add(new Message(" ", "DIOGENES --\nEs como si ya no supiese qué creer, espero volver pronto a casa para hablar con mis discípulos ",10000));
 					sequence2.getMessages().add(new Message(" ", "DIOGENES --\nAdemás, no quiero volver a encontrarme con ese tipo de antes, es incluso más pesado que Platón ",15000));
@@ -181,33 +164,34 @@ public class MenuScreen extends JPanel{
 					sequence2.getMessages().add(new Message(" ", "¡CONOCEGÁS MI IGAAAAA! ",84000));
 					game.getStory().add(sequence2);
 					
+					//Second and last battle
 					skinner = new Philosopher("Skinner", argumentoSL, "./img/skinner.png");
 					Fight fight2 = new Fight(skinner);
 					game.getStory().add(fight2);
-					
+
 					conn.saveGame(game);
-					
-				} catch (LenghtCharacterArgumentException e) {
 
-					e.printStackTrace();
-				} catch (NameException e) {
-
-					e.printStackTrace();
-				} catch (LenghtArgumentException e) {
+				} catch (NameException| LenghtArgumentException  e) {
 
 					e.printStackTrace();
 				}
-
+				
+				//We create the game
 				w.setGame(game);
+				//we call the function that manage the transitions of screen
 				w.transition();
 			}
 		});
 		setLayout(null);
 		add(newGame);		
-		
-		
+
+
 		ButtonsMenu loadGame = new ButtonsMenu("Cargar Partida");
 		loadGame.addMouseListener(new MouseAdapter() {
+			
+			/**
+			 * This function get the game
+			 */
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				Game game = conn.loadGame();
@@ -219,13 +203,13 @@ public class MenuScreen extends JPanel{
 		loadGame.setBounds(480, 581, 180, 50);
 		loadGame.setHorizontalTextPosition(SwingConstants.CENTER);
 		add(loadGame);
-		
+
 		//--------------JLABEL CONFIGURATION-------------------
 		JLabel iconoMenuP = new JLabel("");
 		iconoMenuP.setIcon(new ImageIcon(".\\img\\icono1.png"));
 		iconoMenuP.setBounds(223, 141, 536, 386);
 		add(iconoMenuP);
-		
+
 		JLabel fondoMenuP = new JLabel("");
 		fondoMenuP.setBounds(0, 0, 1280, 700);
 		fondoMenuP.setIcon(new ImageIcon(".\\img\\fondo1.png"));
@@ -233,8 +217,26 @@ public class MenuScreen extends JPanel{
 		setVisible(true);
 
 	}
-	
-	
 
+	
+	/**
+	 * Function that will play the sound in a loop for the game
+	 */
+	public static void soundON() {
+		try {
+			AudioInputStream audioStream = AudioSystem.getAudioInputStream(gameMusic); 
+			AudioFormat format = audioStream.getFormat();
+			DataLine.Info info = new DataLine.Info(Clip.class, format); // 
+			Clip music = (Clip)AudioSystem.getLine(info);
+			music.open(audioStream);
+			music.start();
+			int loop = music.LOOP_CONTINUOUSLY;
+			music.loop(loop);
 
+		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e ) {
+			e.printStackTrace();
+
+		}
+
+	}
 }

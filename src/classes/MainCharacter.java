@@ -9,7 +9,6 @@ import classes.Argument.Type2;
 import exceptions.LenghtArgumentException;
 import exceptions.LenghtCharacterArgumentException;
 import exceptions.NameException;
-import exceptions.NotFoundArgumentException;
 import exceptions.TypeException;
 
 /**

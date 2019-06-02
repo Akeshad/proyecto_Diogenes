@@ -50,7 +50,7 @@ public class FightScreen extends JPanel{
 	private ConnectionBD conn; //Connection to DB 
 	private JTextField timesLost;//JTextField where will be shows how many times has lost the main character
 	private JTextField timesLostPhilo;// JTextField where will be shows how many times has lost the philospher
-	private JLabel descartes; //Image of the philospspher
+	private JLabel descartes; //Image of the philosopher
 
 
 	/**
@@ -148,7 +148,7 @@ public class FightScreen extends JPanel{
 						//descartes.repaint();
 						//descartes.setIcon(new ImageIcon(philosopher.getLinkImage()));
 						/**
-						 * No he conseguido hacer el intercambio de imagenes, no se por qué no salen
+						 * I could not do the exchange of images, I do not know why
 						 */
 
 						diogenesText.setText(characterArgument.getText());
